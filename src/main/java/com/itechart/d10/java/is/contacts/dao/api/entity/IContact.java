@@ -5,10 +5,6 @@ import java.util.Date;
 import com.itechart.d10.java.is.contacts.dao.api.base.IBaseEntity;
 import com.itechart.d10.java.is.contacts.dao.api.enums.Gender;
 import com.itechart.d10.java.is.contacts.dao.api.enums.MaritalStatus;
-import com.itechart.d10.java.is.contacts.dao.impl.entity.Address;
-import com.itechart.d10.java.is.contacts.dao.impl.entity.Attachment;
-import com.itechart.d10.java.is.contacts.dao.impl.entity.Phone;
-import com.itechart.d10.java.is.contacts.dao.impl.entity.Workplace;
 
 public interface IContact extends IBaseEntity{
 
@@ -44,21 +40,13 @@ public interface IContact extends IBaseEntity{
 
 	void setWebsite(String website);
 
-	Workplace getWorkplace();
+	IWorkplace getWorkplace();
 
-	void setWorkplace(Workplace workplace);
+	void setWorkplace(IWorkplace workplace);
 
-	Address getAddress();
+	IAddress getAddress();
 
-	void setAddress(Address address);
-
-	Phone getPhone();
-
-	void setPhone(Phone phone);
-
-	Attachment getAttachment();
-
-	void setAttachment(Attachment attachment);
+	void setAddress(IAddress address);
 
 	Date getCreated();
 

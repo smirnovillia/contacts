@@ -5,6 +5,10 @@ import com.itechart.d10.java.is.contacts.dao.api.enums.PhoneType;
 
 public interface IPhone extends IBaseEntity {
 
+	IContact getContact();
+
+	void setContact(IContact contact);
+
 	String getCountryCode();
 
 	void setCountryCode(String countryCode);

@@ -198,15 +198,10 @@ public abstract class AbsractDaoImpl<ENTITY, ID> implements IBaseDao<ENTITY, ID>
 	}
 
 	protected ENTITY parseRow(final ResultSet resultSet) throws SQLException {
-		throw new UnsupportedOperationException(
-				"this method should be overriden in particular *Impl class or use alternative "
-						+ "com.itacademy.jd2.is.carsharing.dao.jdbc.AbstractDaoImpl.parseRow(ResultSet, List<String>)");
+		throw new UnsupportedOperationException();
 	};
 
 	protected ENTITY parseRow(final ResultSet resultSet, final Set<String> columns) throws SQLException {
-		// this method allows to specify in particular DAO the parser which
-		// accepts list of columns. but by default it will fall back to
-		// com.itacademy.jd2.is.carsharing.dao.jdbc.AbstractDaoImpl.parseRow(ResultSet)
 		return parseRow(resultSet);
 	};
 	

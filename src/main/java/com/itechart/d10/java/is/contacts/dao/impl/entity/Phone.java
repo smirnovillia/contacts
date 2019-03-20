@@ -1,15 +1,26 @@
 package com.itechart.d10.java.is.contacts.dao.impl.entity;
 
+import com.itechart.d10.java.is.contacts.dao.api.entity.IContact;
 import com.itechart.d10.java.is.contacts.dao.api.entity.IPhone;
 import com.itechart.d10.java.is.contacts.dao.api.enums.PhoneType;
 
 public class Phone extends BaseEntity implements IPhone{
 
+	private IContact contact;
 	private String countryCode;
 	private String operatorCode;
 	private String phoneNumber;
 	private PhoneType phoneType;
 	private String comment;
+	
+
+	public IContact getContact() {
+		return contact;
+	}
+
+	public void setContact(IContact contact) {
+		this.contact = contact;
+	}
 
 	public String getCountryCode() {
 		return countryCode;
