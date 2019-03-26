@@ -7,15 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class PhoneServlet
+ * Servlet implementation class AttachmentServlet
  */
-public class PhoneServlet extends HttpServlet {
+public class AttachmentControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PhoneServlet() {
+    public AttachmentControllerServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

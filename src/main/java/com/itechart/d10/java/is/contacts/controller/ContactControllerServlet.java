@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ContactServlet
  */
-public class ContactServlet extends HttpServlet {
+public class ContactControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public ContactServlet() {
+    public ContactControllerServlet() {
         // TODO Auto-generated constructor stub
     }
 

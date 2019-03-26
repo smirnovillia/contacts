@@ -7,15 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AttachmentServlet
+ * Servlet implementation class AddressServlet
  */
-public class AttachmentServlet extends HttpServlet {
+public class AddressConrollerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AttachmentServlet() {
+    public AddressConrollerServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
