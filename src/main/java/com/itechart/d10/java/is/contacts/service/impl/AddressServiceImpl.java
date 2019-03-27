@@ -13,7 +13,7 @@ public class AddressServiceImpl implements IAddressService{
 	
 	private IAddressDao dao;
 
-	public AddressServiceImpl(IAddressDao dao) {
+	public AddressServiceImpl() {
 		super();
 		this.dao = new AddressDaoImpl();
 	}

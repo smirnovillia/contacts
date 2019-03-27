@@ -13,7 +13,7 @@ public class AttachmentServiceImpl implements IAttachmentService{
 	
 	private IAttachmentDao dao;
 
-	public AttachmentServiceImpl(IAttachmentDao dao) {
+	public AttachmentServiceImpl() {
 		super();
 		this.dao = new AttachmentDaoImpl();
 	}

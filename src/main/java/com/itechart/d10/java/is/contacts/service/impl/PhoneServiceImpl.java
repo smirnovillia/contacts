@@ -13,7 +13,7 @@ public class PhoneServiceImpl implements IPhoneService {
 	
 	private IPhoneDao dao;
 
-	public PhoneServiceImpl(IPhoneDao dao) {
+	public PhoneServiceImpl() {
 		super();
 		this.dao = new PhoneDaoImpl();
 	}

@@ -13,7 +13,7 @@ public class ContactServiceImpl implements IContactService {
 
 	private IContactDao dao;
 
-	public ContactServiceImpl(IContactDao dao) {
+	public ContactServiceImpl() {
 		super();
 		this.dao = new ContactDaoImpl();
 	}

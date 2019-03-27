@@ -13,7 +13,7 @@ public class WorkplaceServiceImpl implements IWorkplaceService{
 	
 	private IWorkplaceDao dao;
 
-	public WorkplaceServiceImpl(IWorkplaceDao dao) {
+	public WorkplaceServiceImpl() {
 		super();
 		this.dao = new WorkplaceDaoImpl();
 	}
