@@ -1,16 +1,12 @@
 package com.itechart.d10.java.is.contacts.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.itechart.d10.java.is.contacts.controller.util.RemoteControl;
 
 @WebServlet
 public class CommonServlet extends HttpServlet {

@@ -1,7 +1,6 @@
 package com.itechart.d10.java.is.contacts.dao.impl;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -12,7 +11,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.annotation.PostConstruct;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+import org.apache.tomcat.jdbc.pool.DataSource;
 
 import com.itechart.d10.java.is.contacts.dao.api.IBaseDao;
 import com.itechart.d10.java.is.contacts.dao.api.filter.AbstractFilter;
@@ -22,26 +24,6 @@ import com.itechart.d10.java.is.contacts.dao.impl.util.StatementAction;
 
 public abstract class AbsractDaoImpl<ENTITY, ID> implements IBaseDao<ENTITY, ID> {
 
-	private String url = "jdbc:postgresql://localhost:8080/contacts";
-
-	private String user = "postgres";
-
-	private String password = "1";
-
-	@PostConstruct
-	private void init() {
-		if (url == null) {
-			throw new IllegalArgumentException("[url] cant be null");
-		}
-
-		if (password == null) {
-			throw new IllegalArgumentException("[password] cant be null");
-		}
-
-		if (user == null) {
-			throw new IllegalArgumentException("[user] cant be null");
-		}
-	}
 
 	@Override
 	public ENTITY getById(final ID id) {
@@ -194,7 +176,19 @@ public abstract class AbsractDaoImpl<ENTITY, ID> implements IBaseDao<ENTITY, ID>
 	}
 
 	protected Connection getConnection() throws SQLException {
-		return DriverManager.getConnection(url, user, password);
+		InitialContext initContext = null;
+		try {
+			initContext = new InitialContext();
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+		DataSource ds = null;
+		try {
+			ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/postgres");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+		return ds.getConnection();
 	}
 
 	protected ENTITY parseRow(final ResultSet resultSet) throws SQLException {

@@ -3,65 +3,13 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
-  <servlet>
-  	<servlet-name>ContactServlet</servlet-name>
-  	<display-name>ContactServlet</display-name>
-  	<description></description>
-  	<servlet-class>com.itechart.d10.java.is.contacts.controller.servlets.ContactServlet</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>AddressServlet</servlet-name>
-  	<display-name>AddressServlet</display-name>
-  	<description></description>
-  	<servlet-class>com.itechart.d10.java.is.contacts.controller.AddressServlet</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>PhoneServlet</servlet-name>
-  	<display-name>PhoneServlet</display-name>
-  	<description></description>
-  	<servlet-class>com.itechart.d10.java.is.contacts.controller.PhoneServlet</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>WorkplaceServlet</servlet-name>
-  	<display-name>WorkplaceServlet</display-name>
-  	<description></description>
-  	<servlet-class>com.itechart.d10.java.is.contacts.controller.WorkplaceServlet</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>AttachmentServlet</servlet-name>
-  	<display-name>AttachmentServlet</display-name>
-  	<description></description>
-  	<servlet-class>com.itechart.d10.java.is.contacts.controller.AttachmentServlet</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>CommonServlet</servlet-name>
-  	<display-name>CommonServlet</display-name>
-  	<description></description>
-  	<servlet-class>com.itechart.d10.java.is.contacts.controller.operation.CommonServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>ContactServlet</servlet-name>
-  	<url-pattern>/ContactServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>AddressServlet</servlet-name>
-  	<url-pattern>/AddressServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>PhoneServlet</servlet-name>
-  	<url-pattern>/PhoneServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>WorkplaceServlet</servlet-name>
-  	<url-pattern>/WorkplaceServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>AttachmentServlet</servlet-name>
-  	<url-pattern>/AttachmentServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>CommonServlet</servlet-name>
-  	<url-pattern>/CommonServlet</url-pattern>
-  </servlet-mapping>
+	<display-name>Archetype Created Web Application</display-name>
+
+	<resource-ref>
+		<res-ref-name>jdbc/contacts</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+
 </web-app>
+
