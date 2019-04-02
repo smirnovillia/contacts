@@ -6,16 +6,22 @@ import java.util.List;
 import com.itechart.d10.java.is.contacts.dao.api.IContactDao;
 import com.itechart.d10.java.is.contacts.dao.api.entity.IContact;
 import com.itechart.d10.java.is.contacts.dao.api.filter.ContactFilter;
-import com.itechart.d10.java.is.contacts.dao.impl.ContactDaoImpl;
 import com.itechart.d10.java.is.contacts.service.IContactService;
 
 public class ContactServiceImpl implements IContactService {
 
 	private IContactDao dao;
+	
+	private static ContactServiceImpl instance;
 
-	public ContactServiceImpl() {
-		super();
-		this.dao = new ContactDaoImpl();
+	private ContactServiceImpl() {
+	}
+
+	public static ContactServiceImpl getInstance() {
+		if (instance == null) {
+			instance = new ContactServiceImpl();
+		}
+		return instance;
 	}
 
 	@Override

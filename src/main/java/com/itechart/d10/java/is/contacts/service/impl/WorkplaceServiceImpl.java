@@ -6,16 +6,22 @@ import java.util.List;
 import com.itechart.d10.java.is.contacts.dao.api.IWorkplaceDao;
 import com.itechart.d10.java.is.contacts.dao.api.entity.IWorkplace;
 import com.itechart.d10.java.is.contacts.dao.api.filter.WorkplaceFilter;
-import com.itechart.d10.java.is.contacts.dao.impl.WorkplaceDaoImpl;
 import com.itechart.d10.java.is.contacts.service.IWorkplaceService;
 
 public class WorkplaceServiceImpl implements IWorkplaceService{
 	
 	private IWorkplaceDao dao;
 
-	public WorkplaceServiceImpl() {
-		super();
-		this.dao = new WorkplaceDaoImpl();
+	private static WorkplaceServiceImpl instance;
+
+	private WorkplaceServiceImpl() {
+	}
+
+	public static WorkplaceServiceImpl getInstance() {
+		if (instance == null) {
+			instance = new WorkplaceServiceImpl();
+		}
+		return instance;
 	}
 
 	@Override

@@ -6,16 +6,22 @@ import java.util.List;
 import com.itechart.d10.java.is.contacts.dao.api.IAttachmentDao;
 import com.itechart.d10.java.is.contacts.dao.api.entity.IAttachment;
 import com.itechart.d10.java.is.contacts.dao.api.filter.AttachmentFilter;
-import com.itechart.d10.java.is.contacts.dao.impl.AttachmentDaoImpl;
 import com.itechart.d10.java.is.contacts.service.IAttachmentService;
 
 public class AttachmentServiceImpl implements IAttachmentService{
 	
 	private IAttachmentDao dao;
 
-	public AttachmentServiceImpl() {
-		super();
-		this.dao = new AttachmentDaoImpl();
+	private static AttachmentServiceImpl instance;
+	
+	private AttachmentServiceImpl() {
+	}
+	
+	public static AttachmentServiceImpl getInstance() {
+		if (instance == null) {
+			instance = new AttachmentServiceImpl();
+		}
+		return instance;
 	}
 
 	@Override

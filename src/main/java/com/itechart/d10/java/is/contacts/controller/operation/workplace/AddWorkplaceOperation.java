@@ -4,14 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itechart.d10.java.is.contacts.controller.api.ICommand;
-import com.itechart.d10.java.is.contacts.controller.operation.phone.AddPhoneOperation;
 import com.itechart.d10.java.is.contacts.dao.api.entity.IWorkplace;
-import com.itechart.d10.java.is.contacts.service.IWorkplaceService;
 import com.itechart.d10.java.is.contacts.service.impl.WorkplaceServiceImpl;
 
 public class AddWorkplaceOperation implements ICommand{
 	
-	private IWorkplaceService workplaceServiceImpl = new WorkplaceServiceImpl();
 	
 	private static AddWorkplaceOperation instance;
 
@@ -27,8 +24,13 @@ public class AddWorkplaceOperation implements ICommand{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		final IWorkplace entity = workplaceServiceImpl.createEntity();
-		workplaceServiceImpl.save(entity);
+		final IWorkplace entity = WorkplaceServiceImpl.getInstance().createEntity();
+		
+		entity.setCompany(request.getParameter("company"));
+		
+		WorkplaceServiceImpl.getInstance().save(entity);
+		
+		ListWorkplaceOperation.getInstance().execute(request, response);
 	}
 
 }

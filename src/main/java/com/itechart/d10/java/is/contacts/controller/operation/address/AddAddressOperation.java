@@ -4,13 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itechart.d10.java.is.contacts.controller.api.ICommand;
+import com.itechart.d10.java.is.contacts.controller.operation.contact.ListContactOperation;
 import com.itechart.d10.java.is.contacts.dao.api.entity.IAddress;
-import com.itechart.d10.java.is.contacts.service.IAddressService;
 import com.itechart.d10.java.is.contacts.service.impl.AddressServiceImpl;
 
 public class AddAddressOperation implements ICommand {
 
-	private IAddressService addressService = new AddressServiceImpl();
 	private static AddAddressOperation instance;
 
 	private AddAddressOperation() {
@@ -25,9 +24,17 @@ public class AddAddressOperation implements ICommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+
+		final IAddress entity = AddressServiceImpl.getInstance().createEntity();
+		entity.setCountry(request.getParameter("country"));
+		entity.setCity(request.getParameter("city"));
+		entity.setStreet(request.getParameter("street"));
+		entity.setHouseNumber(request.getParameter("houseNumber"));
+		entity.setApartment(Integer.parseInt(request.getParameter("apartmnet")));
 		
-		final IAddress entity = addressService.createEntity();
-		addressService.save(entity);
+		AddressServiceImpl.getInstance().save(entity);
+		
+		ListAddressOperation.getInstance().execute(request, response);
 	}
 
 }

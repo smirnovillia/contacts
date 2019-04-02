@@ -6,16 +6,22 @@ import java.util.List;
 import com.itechart.d10.java.is.contacts.dao.api.IPhoneDao;
 import com.itechart.d10.java.is.contacts.dao.api.entity.IPhone;
 import com.itechart.d10.java.is.contacts.dao.api.filter.PhoneFilter;
-import com.itechart.d10.java.is.contacts.dao.impl.PhoneDaoImpl;
 import com.itechart.d10.java.is.contacts.service.IPhoneService;
 
 public class PhoneServiceImpl implements IPhoneService {
-	
+
 	private IPhoneDao dao;
 
-	public PhoneServiceImpl() {
-		super();
-		this.dao = new PhoneDaoImpl();
+	private static PhoneServiceImpl instance;
+
+	private PhoneServiceImpl() {
+	}
+
+	public static PhoneServiceImpl getInstance() {
+		if (instance == null) {
+			instance = new PhoneServiceImpl();
+		}
+		return instance;
 	}
 
 	@Override
@@ -32,7 +38,7 @@ public class PhoneServiceImpl implements IPhoneService {
 	public void save(IPhone entity) {
 		final Date modifedOn = new Date();
 		entity.setUpdated(modifedOn);
-		if(entity.getId() == null) {
+		if (entity.getId() == null) {
 			entity.setCreated(modifedOn);
 			dao.insert(entity);
 		} else {

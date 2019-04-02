@@ -6,16 +6,22 @@ import java.util.List;
 import com.itechart.d10.java.is.contacts.dao.api.IAddressDao;
 import com.itechart.d10.java.is.contacts.dao.api.entity.IAddress;
 import com.itechart.d10.java.is.contacts.dao.api.filter.AddressFilter;
-import com.itechart.d10.java.is.contacts.dao.impl.AddressDaoImpl;
 import com.itechart.d10.java.is.contacts.service.IAddressService;
 
 public class AddressServiceImpl implements IAddressService{
 	
 	private IAddressDao dao;
-
-	public AddressServiceImpl() {
-		super();
-		this.dao = new AddressDaoImpl();
+	
+	private static AddressServiceImpl instance;
+	
+	private AddressServiceImpl() {
+	}
+	
+	public static AddressServiceImpl getInstance() {
+		if (instance == null) {
+			instance = new AddressServiceImpl();
+		}
+		return instance;
 	}
 
 	@Override

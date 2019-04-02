@@ -40,50 +40,51 @@ import com.itechart.d10.java.is.contacts.controller.operation.workplace.UpdateWo
 @WebServlet("/CommonServlet")
 public class CommonServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Map<String, ICommand> comands;
-	
-       
-    public CommonServlet() {
-        super();
-    }
-    
-    @Override
-    public void init() throws ServletException {
-    	comands = new HashMap<String, ICommand>();
-    	comands.put("AddContactOperation", AddContactOperation.getInstance());
-    	comands.put("ListContactOperation", ListContactOperation.getInstance());
-    	comands.put("UpdateContactOperation", UpdateContactOperation.getInstance());
-    	comands.put("DeleteContactOperation", DeleteContactOperation.getInstance());
-    	comands.put("GetContactOperation", GetContactOperation.getInstance());
-    	comands.put("AddPhoneOperation", AddPhoneOperation.getInstance());
-    	comands.put("ListPhoneOperation", ListPhoneOperation.getInstance());
-    	comands.put("UpdatePhoneOperation", UpdatePhoneOperation.getInstance());
-    	comands.put("DeletePhoneOperation", DeletePhoneOperation.getInstance());
-    	comands.put("GetPhoneOperation", GetPhoneOperation.getInstance());
-    	comands.put("AddAttachmentOperation", AddAttachmentOperation.getInstance());
-    	comands.put("ListAttachmentOperation", ListAttachmentOperation.getInstance());
-    	comands.put("UpdateAttachmentOperation", UpdateAttachmentOperation.getInstance());
-    	comands.put("DeleteAttachmentOperation", DeleteAttachmentOperation.getInstance());
-    	comands.put("GetAttachmentOperation", GetAttachmentOperation.getInstance());
-    	comands.put("AddWorkplaceOperation", AddWorkplaceOperation.getInstance());
-    	comands.put("ListWorkplaceOperation", ListWorkplaceOperation.getInstance());
-    	comands.put("UpdateWorkplaceOperation", UpdateWorkplaceOperation.getInstance());
-    	comands.put("DeleteWorkplaceOperation", DeleteWorkplaceOperation.getInstance());
-    	comands.put("GetWorkplaceOperation", GetWorkplaceOperation.getInstance());
-    	comands.put("AddAddressOperation", AddAddressOperation.getInstance());
-    	comands.put("ListAddressOperation", ListAddressOperation.getInstance());
-    	comands.put("UpdateAddressOperation", UpdateAddressOperation.getInstance());
-    	comands.put("DeleteAddressOperation", DeleteAddressOperation.getInstance());
-    	comands.put("GetAddressOperation", GetAddressOperation.getInstance());
-    }
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	@Override
+	public void init() throws ServletException {
+		comands = new HashMap<String, ICommand>();
+		comands.put("AddContactOperation", AddContactOperation.getInstance());
+		comands.put("ListContactOperation", ListContactOperation.getInstance());
+		comands.put("UpdateContactOperation", UpdateContactOperation.getInstance());
+		comands.put("DeleteContactOperation", DeleteContactOperation.getInstance());
+		comands.put("GetContactOperation", GetContactOperation.getInstance());
+		comands.put("AddPhoneOperation", AddPhoneOperation.getInstance());
+		comands.put("ListPhoneOperation", ListPhoneOperation.getInstance());
+		comands.put("UpdatePhoneOperation", UpdatePhoneOperation.getInstance());
+		comands.put("DeletePhoneOperation", DeletePhoneOperation.getInstance());
+		comands.put("GetPhoneOperation", GetPhoneOperation.getInstance());
+		comands.put("AddAttachmentOperation", AddAttachmentOperation.getInstance());
+		comands.put("ListAttachmentOperation", ListAttachmentOperation.getInstance());
+		comands.put("UpdateAttachmentOperation", UpdateAttachmentOperation.getInstance());
+		comands.put("DeleteAttachmentOperation", DeleteAttachmentOperation.getInstance());
+		comands.put("GetAttachmentOperation", GetAttachmentOperation.getInstance());
+		comands.put("AddWorkplaceOperation", AddWorkplaceOperation.getInstance());
+		comands.put("ListWorkplaceOperation", ListWorkplaceOperation.getInstance());
+		comands.put("UpdateWorkplaceOperation", UpdateWorkplaceOperation.getInstance());
+		comands.put("DeleteWorkplaceOperation", DeleteWorkplaceOperation.getInstance());
+		comands.put("GetWorkplaceOperation", GetWorkplaceOperation.getInstance());
+		comands.put("AddAddressOperation", AddAddressOperation.getInstance());
+		comands.put("ListAddressOperation", ListAddressOperation.getInstance());
+		comands.put("UpdateAddressOperation", UpdateAddressOperation.getInstance());
+		comands.put("DeleteAddressOperation", DeleteAddressOperation.getInstance());
+		comands.put("GetAddressOperation", GetAddressOperation.getInstance());
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try{
+			if(request.getParameter("operation") != null) {
+				String operation = request.getParameter("operation");
+				comands.get(operation).execute(request, response);
+			} else {
+				comands.get("ListContactOperation").execute(request, response);
+			}
+		} catch (Exception e) {
+			throw new ServletException();
+		}
+		
 	}
-	
 
 }
