@@ -11,11 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itechart.d10.java.is.contacts.controller.api.ICommand;
-import com.itechart.d10.java.is.contacts.controller.operation.address.AddAddressOperation;
-import com.itechart.d10.java.is.contacts.controller.operation.address.DeleteAddressOperation;
-import com.itechart.d10.java.is.contacts.controller.operation.address.GetAddressOperation;
-import com.itechart.d10.java.is.contacts.controller.operation.address.ListAddressOperation;
-import com.itechart.d10.java.is.contacts.controller.operation.address.UpdateAddressOperation;
 import com.itechart.d10.java.is.contacts.controller.operation.attachment.AddAttachmentOperation;
 import com.itechart.d10.java.is.contacts.controller.operation.attachment.DeleteAttachmentOperation;
 import com.itechart.d10.java.is.contacts.controller.operation.attachment.GetAttachmentOperation;
@@ -31,11 +26,6 @@ import com.itechart.d10.java.is.contacts.controller.operation.phone.DeletePhoneO
 import com.itechart.d10.java.is.contacts.controller.operation.phone.GetPhoneOperation;
 import com.itechart.d10.java.is.contacts.controller.operation.phone.ListPhoneOperation;
 import com.itechart.d10.java.is.contacts.controller.operation.phone.UpdatePhoneOperation;
-import com.itechart.d10.java.is.contacts.controller.operation.workplace.AddWorkplaceOperation;
-import com.itechart.d10.java.is.contacts.controller.operation.workplace.DeleteWorkplaceOperation;
-import com.itechart.d10.java.is.contacts.controller.operation.workplace.GetWorkplaceOperation;
-import com.itechart.d10.java.is.contacts.controller.operation.workplace.ListWorkplaceOperation;
-import com.itechart.d10.java.is.contacts.controller.operation.workplace.UpdateWorkplaceOperation;
 
 @WebServlet("/CommonServlet")
 public class CommonServlet extends HttpServlet {
@@ -61,16 +51,6 @@ public class CommonServlet extends HttpServlet {
 		comands.put("UpdateAttachmentOperation", UpdateAttachmentOperation.getInstance());
 		comands.put("DeleteAttachmentOperation", DeleteAttachmentOperation.getInstance());
 		comands.put("GetAttachmentOperation", GetAttachmentOperation.getInstance());
-		comands.put("AddWorkplaceOperation", AddWorkplaceOperation.getInstance());
-		comands.put("ListWorkplaceOperation", ListWorkplaceOperation.getInstance());
-		comands.put("UpdateWorkplaceOperation", UpdateWorkplaceOperation.getInstance());
-		comands.put("DeleteWorkplaceOperation", DeleteWorkplaceOperation.getInstance());
-		comands.put("GetWorkplaceOperation", GetWorkplaceOperation.getInstance());
-		comands.put("AddAddressOperation", AddAddressOperation.getInstance());
-		comands.put("ListAddressOperation", ListAddressOperation.getInstance());
-		comands.put("UpdateAddressOperation", UpdateAddressOperation.getInstance());
-		comands.put("DeleteAddressOperation", DeleteAddressOperation.getInstance());
-		comands.put("GetAddressOperation", GetAddressOperation.getInstance());
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

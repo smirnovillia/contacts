@@ -8,14 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itechart.d10.java.is.contacts.controller.api.ICommand;
-import com.itechart.d10.java.is.contacts.dao.api.entity.IAddress;
 import com.itechart.d10.java.is.contacts.dao.api.entity.IContact;
-import com.itechart.d10.java.is.contacts.dao.api.entity.IWorkplace;
 import com.itechart.d10.java.is.contacts.dao.api.enums.Gender;
 import com.itechart.d10.java.is.contacts.dao.api.enums.MaritalStatus;
-import com.itechart.d10.java.is.contacts.service.impl.AddressServiceImpl;
 import com.itechart.d10.java.is.contacts.service.impl.ContactServiceImpl;
-import com.itechart.d10.java.is.contacts.service.impl.WorkplaceServiceImpl;
 
 public class AddContactOperation implements ICommand {
 	
@@ -53,17 +49,7 @@ public class AddContactOperation implements ICommand {
 		entity.setCitizenship(request.getParameter("citizenship"));
 		entity.setMaritalStatus(MaritalStatus.valueOf(request.getParameter("maritalStatus")));
 		entity.setWebsite(request.getParameter("website"));
-		final IWorkplace workplace = WorkplaceServiceImpl.getInstance().createEntity();
-		if(request.getParameter("workplaceId") != null) {
-			workplace.setId(Integer.parseInt(request.getParameter("workplaceId")));
-			entity.setWorkplace(workplace);
-		}
-		
-		final IAddress address = AddressServiceImpl.getInstance().createEntity();
-		if(request.getParameter("addressId") != null) {
-			address.setId(Integer.parseInt(request.getParameter("addressId")));
-			entity.setAddress(address);
-		}
+		entity.setCountry(request.getParameter("website"));
 		ContactServiceImpl.getInstance().save(entity);
 		ListContactOperation.getInstance().execute(request, response);
 	}

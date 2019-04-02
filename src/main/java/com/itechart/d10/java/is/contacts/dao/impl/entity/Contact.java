@@ -2,9 +2,7 @@ package com.itechart.d10.java.is.contacts.dao.impl.entity;
 
 import java.util.Date;
 
-import com.itechart.d10.java.is.contacts.dao.api.entity.IAddress;
 import com.itechart.d10.java.is.contacts.dao.api.entity.IContact;
-import com.itechart.d10.java.is.contacts.dao.api.entity.IWorkplace;
 import com.itechart.d10.java.is.contacts.dao.api.enums.Gender;
 import com.itechart.d10.java.is.contacts.dao.api.enums.MaritalStatus;
 
@@ -18,8 +16,13 @@ public class Contact extends BaseEntity implements IContact {
 	private String citizenship;
 	private MaritalStatus maritalStatus;
 	private String website;
-	private IWorkplace workplace;
-	private IAddress address;
+	private String company;
+	private String country;
+	private String city;
+	private String street;
+	private String houseNumber;
+	private Integer apartment;
+	private String zip;
 	private Date created;
 	private Date updated;
 
@@ -87,20 +90,60 @@ public class Contact extends BaseEntity implements IContact {
 		this.website = website;
 	}
 
-	public IWorkplace getWorkplace() {
-		return workplace;
+	public String getCompany() {
+		return company;
 	}
 
-	public void setWorkplace(IWorkplace workplace) {
-		this.workplace = workplace;
+	public void setCompany(String company) {
+		this.company = company;
 	}
 
-	public IAddress getAddress() {
-		return address;
+	public String getCountry() {
+		return country;
 	}
 
-	public void setAddress(IAddress address) {
-		this.address = address;
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getHouseNumber() {
+		return houseNumber;
+	}
+
+	public void setHouseNumber(String houseNumber) {
+		this.houseNumber = houseNumber;
+	}
+
+	public Integer getApartment() {
+		return apartment;
+	}
+
+	public void setApartment(Integer apartment) {
+		this.apartment = apartment;
+	}
+	
+	public String getZip() {
+		return zip;
+	}
+
+	public void setZip(String zip) {
+		this.zip = zip;
 	}
 
 	public Date getCreated() {

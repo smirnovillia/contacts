@@ -7,15 +7,11 @@ import java.sql.Types;
 import java.util.List;
 
 import com.itechart.d10.java.is.contacts.dao.api.IContactDao;
-import com.itechart.d10.java.is.contacts.dao.api.entity.IAddress;
 import com.itechart.d10.java.is.contacts.dao.api.entity.IContact;
-import com.itechart.d10.java.is.contacts.dao.api.entity.IWorkplace;
 import com.itechart.d10.java.is.contacts.dao.api.enums.Gender;
 import com.itechart.d10.java.is.contacts.dao.api.enums.MaritalStatus;
 import com.itechart.d10.java.is.contacts.dao.api.filter.ContactFilter;
-import com.itechart.d10.java.is.contacts.dao.impl.entity.Address;
 import com.itechart.d10.java.is.contacts.dao.impl.entity.Contact;
-import com.itechart.d10.java.is.contacts.dao.impl.entity.Workplace;
 import com.itechart.d10.java.is.contacts.dao.impl.util.PreparedStatementAction;
 
 public class ContactDaoImpl extends AbsractDaoImpl<IContact, Integer> implements IContactDao {
@@ -29,7 +25,7 @@ public class ContactDaoImpl extends AbsractDaoImpl<IContact, Integer> implements
 	public void update(IContact entity) {
 		executeStatement(new PreparedStatementAction<IContact>(String.format(
 				"update %s set first_name=?, midle_name=?, last_name=?, birthday=?, gender=?, citizenship=?,"
-						+ "marital_status=?, website=?, workplase_id=?, address_id=?, updated=? where id=?",
+						+ "marital_status=?, website=?, company=?, country=?, city=?, street=?, house_number=?, apartment=?, zip=?, updated=? where id=?",
 				getTableName())) {
 
 			@Override
@@ -42,10 +38,15 @@ public class ContactDaoImpl extends AbsractDaoImpl<IContact, Integer> implements
 				pStmt.setString(6, entity.getCitizenship());
 				pStmt.setString(7, entity.getMaritalStatus().toString());
 				pStmt.setString(8, entity.getWebsite());
-				pStmt.setInt(9, entity.getWorkplace().getId());
-				pStmt.setInt(10, entity.getAddress().getId());
-				pStmt.setObject(11, entity.getUpdated(), Types.TIMESTAMP);
-				pStmt.setInt(12, entity.getId());
+				pStmt.setString(9, entity.getCompany());
+				pStmt.setString(10, entity.getCountry());
+				pStmt.setString(11, entity.getCity());
+				pStmt.setString(12, entity.getStreet());
+				pStmt.setString(13, entity.getHouseNumber());
+				pStmt.setInt(14, entity.getApartment());
+				pStmt.setString(15, entity.getZip());
+				pStmt.setObject(16, entity.getUpdated(), Types.TIMESTAMP);
+				pStmt.setInt(17, entity.getId());
 
 				pStmt.executeUpdate();
 				return entity;
@@ -59,7 +60,7 @@ public class ContactDaoImpl extends AbsractDaoImpl<IContact, Integer> implements
 	public void insert(IContact entity) {
 		executeStatement(new PreparedStatementAction<IContact>(String.format(
 				"insert into %s (first_name, midle_name, last_name, birthday, gender, citizenship, marital_status,"
-						+ " website, workplace_id, address_id, created, updated) values(?,?,?,?,?,?,?,?,?,?,?,?)",
+						+ " website, company, company=?, country=?, city=?, street=?, house_number=?, apartment=?, zip=?, created, updated) values(?,?,?,?,?,?,?,?,?,?,?,?)",
 				getTableName()), true) {
 
 			@Override
@@ -72,10 +73,15 @@ public class ContactDaoImpl extends AbsractDaoImpl<IContact, Integer> implements
 				pStmt.setString(6, entity.getCitizenship());
 				pStmt.setString(7, entity.getMaritalStatus().toString());
 				pStmt.setString(8, entity.getWebsite());
-				pStmt.setInt(9, entity.getWorkplace().getId());
-				pStmt.setInt(10, entity.getAddress().getId());
-				pStmt.setObject(11, entity.getCreated(), Types.TIMESTAMP);
-				pStmt.setObject(12, entity.getUpdated(), Types.TIMESTAMP);
+				pStmt.setString(9, entity.getCompany());
+				pStmt.setString(10, entity.getCountry());
+				pStmt.setString(11, entity.getCity());
+				pStmt.setString(12, entity.getStreet());
+				pStmt.setString(13, entity.getHouseNumber());
+				pStmt.setInt(14, entity.getApartment());
+				pStmt.setString(15, entity.getZip());
+				pStmt.setObject(16, entity.getCreated(), Types.TIMESTAMP);
+				pStmt.setObject(17, entity.getUpdated(), Types.TIMESTAMP);
 
 				pStmt.executeUpdate();
 
@@ -107,14 +113,13 @@ public class ContactDaoImpl extends AbsractDaoImpl<IContact, Integer> implements
 		entity.setCitizenship(resultSet.getString("citizenship"));
 		entity.setMaritalStatus(MaritalStatus.valueOf(resultSet.getString("marital_status")));
 		entity.setWebsite(resultSet.getString("website"));
-		
-		final IWorkplace workplace = new Workplace();
-		workplace.setId(resultSet.getInt("workplace_id"));
-		entity.setWorkplace(workplace);
-		
-		final IAddress address = new Address();
-		address.setId(resultSet.getInt("address_id"));
-		entity.setAddress(address);
+		entity.setCompany("company");
+		entity.setCountry(resultSet.getString("country"));
+		entity.setCity(resultSet.getString("city"));
+		entity.setStreet(resultSet.getString("street"));
+		entity.setHouseNumber(resultSet.getString("house_number"));
+		entity.setApartment(resultSet.getInt("apartment"));
+		entity.setZip(resultSet.getString("zip"));
 		
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));

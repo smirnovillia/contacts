@@ -6,7 +6,7 @@ import com.itechart.d10.java.is.contacts.dao.api.base.IBaseEntity;
 import com.itechart.d10.java.is.contacts.dao.api.enums.Gender;
 import com.itechart.d10.java.is.contacts.dao.api.enums.MaritalStatus;
 
-public interface IContact extends IBaseEntity{
+public interface IContact extends IBaseEntity {
 
 	String getFirstName();
 
@@ -40,13 +40,33 @@ public interface IContact extends IBaseEntity{
 
 	void setWebsite(String website);
 
-	IWorkplace getWorkplace();
+	String getCompany();
 
-	void setWorkplace(IWorkplace workplace);
+	void setCompany(String company);
 
-	IAddress getAddress();
+	String getCountry();
 
-	void setAddress(IAddress address);
+	void setCountry(String country);
+
+	String getCity();
+
+	void setCity(String city);
+
+	String getStreet();
+
+	void setStreet(String street);
+
+	String getHouseNumber();
+
+	void setHouseNumber(String houseNumber);
+
+	Integer getApartment();
+
+	void setApartment(Integer apartment);
+
+	String getZip();
+
+	void setZip(String zip);
 
 	Date getCreated();
 
@@ -55,4 +75,5 @@ public interface IContact extends IBaseEntity{
 	Date getUpdated();
 
 	void setUpdated(Date updated);
+
 }
