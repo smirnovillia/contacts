@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,55 +40,59 @@
 
 					<tr>
 						<td><label>Gender:</label></td>
-						<td><input type="radio" name="gender" value="${gender.MALE}" />Male</td>
-						<td><input type="radio" name="gender" value="${gender.FEMALE}"/>Female</td>
+						<td><input type="radio"
+							<c:if test="${gender eq 'MALE'}">checked</c:if> name="gender"
+							value="MALE" />Male</td>
+						<td><input type="radio"
+							<c:if test="${gender eq 'FEMALE'}">checked</c:if> name="gender"
+							value="FEMALE" />Female</td>
 					</tr>
-					
+
 					<tr>
 						<td><label>Citizenship:</label></td>
 						<td><input type="text" name="citizenship" /></td>
 					</tr>
-					
+
 					<tr>
 						<td><label>Website:</label></td>
 						<td><input type="text" name="website" /></td>
 					</tr>
-					
+
 					<tr>
 						<td><label>Company:</label></td>
 						<td><input type="text" name="company" /></td>
 					</tr>
-					
+
 					<tr>
 						<td><label>Country:</label></td>
 						<td><input type="text" name="country" /></td>
 					</tr>
-					
+
 					<tr>
 						<td><label>City:</label></td>
 						<td><input type="text" name="city" /></td>
 					</tr>
-					
+
 					<tr>
 						<td><label>Street:</label></td>
 						<td><input type="text" name="street" /></td>
 					</tr>
-					
+
 					<tr>
 						<td><label>House Number:</label></td>
 						<td><input type="text" name="houseNumber" /></td>
 					</tr>
-					
+
 					<tr>
 						<td><label>Apartment:</label></td>
 						<td><input type="number" name="apartment" /></td>
 					</tr>
-					
+
 					<tr>
 						<td><label>Zip:</label></td>
 						<td><input type="text" name="zip" /></td>
 					</tr>
-					
+
 					<tr>
 						<td><label></label></td>
 						<td><input type="submit" value="Save" class="save" /></td>

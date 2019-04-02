@@ -2,7 +2,11 @@ package com.itechart.d10.java.is.contacts.controller.operation.contact;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,12 +48,16 @@ public class AddContactOperation implements ICommand {
 			e.printStackTrace();
 		}
 		entity.setBirthday(birthday);
-		
 		entity.setGender(Gender.valueOf(request.getParameter("gender")));
 		entity.setCitizenship(request.getParameter("citizenship"));
 		entity.setMaritalStatus(MaritalStatus.valueOf(request.getParameter("maritalStatus")));
 		entity.setWebsite(request.getParameter("website"));
-		entity.setCountry(request.getParameter("website"));
+		entity.setCountry(request.getParameter("country"));
+		entity.setCity(request.getParameter("city"));
+		entity.setStreet(request.getParameter("street"));
+		entity.setHouseNumber(request.getParameter("houseNumber"));
+		entity.setApartment(Integer.parseInt(request.getParameter("apartment")));
+		entity.setZip(request.getParameter("zip"));
 		ContactServiceImpl.getInstance().save(entity);
 		ListContactOperation.getInstance().execute(request, response);
 	}
