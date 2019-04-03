@@ -2,11 +2,7 @@ package com.itechart.d10.java.is.contacts.controller.operation.contact;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,7 +35,7 @@ public class AddContactOperation implements ICommand {
 		entity.setMidleName(request.getParameter("midleName"));
 		entity.setLastName(request.getParameter("lastName"));
 		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		String bDay = request.getParameter("birthday");
 		Date birthday = null;
 		try {
@@ -59,7 +55,7 @@ public class AddContactOperation implements ICommand {
 		entity.setApartment(Integer.parseInt(request.getParameter("apartment")));
 		entity.setZip(request.getParameter("zip"));
 		ContactServiceImpl.getInstance().save(entity);
-		ListContactOperation.getInstance().execute(request, response);
+//		ListContactOperation.getInstance().execute(request, response);
 	}
 
 }

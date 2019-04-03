@@ -30,7 +30,7 @@ public class ListContactOperation implements ICommand {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		List<IContact> contactList = ContactServiceImpl.getInstance().getAll();
 		request.setAttribute("contactList", contactList);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/contact/list.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("contact/list.jsp");
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException | IOException e) {

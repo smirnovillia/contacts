@@ -1,4 +1,3 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <!DOCTYPE html>
 <html>
@@ -12,7 +11,7 @@
 	<div id="container">
 		<h3>Add Contact</h3>
 
-		<form action="CommonServlet" method="GET">
+		<form action="CommonServlet" method="POST">
 
 			<input type="hidden" name="operation" value="AddContactOperation" />
 
@@ -40,17 +39,23 @@
 
 					<tr>
 						<td><label>Gender:</label></td>
-						<td><input type="radio"
-							<c:if test="${gender eq 'MALE'}">checked</c:if> name="gender"
-							value="MALE" />Male</td>
-						<td><input type="radio"
-							<c:if test="${gender eq 'FEMALE'}">checked</c:if> name="gender"
-							value="FEMALE" />Female</td>
+						<td><input type="radio" name="gender" value="MALE" />Male</td>
+						<td><input type="radio" name="gender" value="FEMALE" />Female</td>
 					</tr>
 
 					<tr>
 						<td><label>Citizenship:</label></td>
 						<td><input type="text" name="citizenship" /></td>
+					</tr>
+
+					<tr>
+						<td><label>Marital Status:</label></td>
+						<td><select name="maritalStatus">
+								<option value="MARRIED">Married</option>
+								<option value="SINGLE">Single</option>
+								<option value="DIVORCED">Divorced</option>
+								<option value="WIDOWED">Widowed</option>
+						</select></td>
 					</tr>
 
 					<tr>
