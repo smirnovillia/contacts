@@ -55,7 +55,7 @@ public class AddContactOperation implements ICommand {
 		entity.setApartment(Integer.parseInt(request.getParameter("apartment")));
 		entity.setZip(request.getParameter("zip"));
 		ContactServiceImpl.getInstance().save(entity);
-//		ListContactOperation.getInstance().execute(request, response);
+		
 	}
 
 }

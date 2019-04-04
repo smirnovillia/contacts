@@ -12,5 +12,20 @@
 		<res-auth>Container</res-auth>
 	</resource-ref>
 
+	<servlet>
+		<servlet-name>CommonServlet</servlet-name>
+		<servlet-class>com.itechart.d10.java.is.contacts.controller.CommonServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CommonServlet</servlet-name>
+		<url-pattern>/commonServlet/*</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>commonServlet</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
 </web-app>
 

@@ -28,9 +28,9 @@ public class ListContactOperation implements ICommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		List<IContact> contactList = ContactServiceImpl.getInstance().getAll();
-		request.setAttribute("contactList", contactList);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("contact/list.jsp");
+		List<IContact> contactsFromDb = ContactServiceImpl.getInstance().getAll();
+		request.setAttribute("contactList", contactsFromDb);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/contact/list.jsp");
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException | IOException e) {

@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +26,6 @@ import com.itechart.d10.java.is.contacts.controller.operation.phone.GetPhoneOper
 import com.itechart.d10.java.is.contacts.controller.operation.phone.ListPhoneOperation;
 import com.itechart.d10.java.is.contacts.controller.operation.phone.UpdatePhoneOperation;
 
-@WebServlet("/CommonServlet")
 public class CommonServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -51,11 +49,26 @@ public class CommonServlet extends HttpServlet {
 		comands.put("UpdateAttachmentOperation", UpdateAttachmentOperation.getInstance());
 		comands.put("DeleteAttachmentOperation", DeleteAttachmentOperation.getInstance());
 		comands.put("GetAttachmentOperation", GetAttachmentOperation.getInstance());
+		System.out.println("Servlet started");
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try{
-			if(request.getParameter("operation") != null) {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		processRequest(request, response);
+
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		processRequest(request, response);
+	}
+
+	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+		System.out.println("This method was executed");
+		try {
+			if (request.getParameter("operation") != null) {
 				String operation = request.getParameter("operation");
 				comands.get(operation).execute(request, response);
 			} else {
@@ -64,7 +77,6 @@ public class CommonServlet extends HttpServlet {
 		} catch (Exception e) {
 			throw new ServletException();
 		}
-		
 	}
 
 }
