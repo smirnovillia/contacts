@@ -31,12 +31,12 @@
 					<th>Company</th>
 				</tr>
 				<tbody>
-				<c:forEach items="${contactList}" var="contact" >
+				<%-- <c:forEach items="${contactList}" var="contact" >
 					<tr> <td>${contact.firstName}</td> </tr>
 					<tr> <td>${contact.birthday}</td> </tr>
 					<tr> <td>${contact.country}</td> </tr>
 					<tr> <td>${contact.company}</td> </tr>
-				 </c:forEach>
+				 </c:forEach> --%>
 
 				</tbody>
 			</table>
