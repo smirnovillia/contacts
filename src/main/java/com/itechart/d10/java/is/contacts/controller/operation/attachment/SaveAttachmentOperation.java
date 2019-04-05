@@ -9,17 +9,19 @@ import com.itechart.d10.java.is.contacts.dao.api.entity.IContact;
 import com.itechart.d10.java.is.contacts.service.impl.AttachmentServiceImpl;
 import com.itechart.d10.java.is.contacts.service.impl.ContactServiceImpl;
 
-public class AddAttachmentOperation implements ICommand{
+public class SaveAttachmentOperation implements ICommand{
 	
-	
-	private static AddAttachmentOperation instance;
+        private AttachmentServiceImpl attachmentServiceImpl = new AttachmentServiceImpl();
+        private ContactServiceImpl contactServiceImpl = new ContactServiceImpl();
+    
+	private static SaveAttachmentOperation instance;
 
-	private AddAttachmentOperation() {
+	private SaveAttachmentOperation() {
 	}
 
-	public static AddAttachmentOperation getInstance() {
+	public static SaveAttachmentOperation getInstance() {
 		if (instance == null) {
-			instance = new AddAttachmentOperation();
+			instance = new SaveAttachmentOperation();
 		}
 		return instance;
 	}
@@ -27,9 +29,9 @@ public class AddAttachmentOperation implements ICommand{
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		final IAttachment entity = AttachmentServiceImpl.getInstance().createEntity();
+		final IAttachment entity = attachmentServiceImpl.createEntity();
 		
-		final IContact contact = ContactServiceImpl.getInstance().createEntity();
+		final IContact contact = contactServiceImpl.createEntity();
 		if(request.getParameter("contactId") != null) {
 			contact.setId(Integer.parseInt(request.getParameter("contactId")));
 			entity.setContact(contact);
@@ -39,9 +41,8 @@ public class AddAttachmentOperation implements ICommand{
 		entity.setFilePath(request.getParameter("filePath"));
 		entity.setComment(request.getParameter("comment"));
 		
-		AttachmentServiceImpl.getInstance().save(entity);
+		attachmentServiceImpl.save(entity);
 		
-		ListAttachmentOperation.getInstance().execute(request, response);
 	}
 
 }

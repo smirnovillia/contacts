@@ -10,26 +10,28 @@ import com.itechart.d10.java.is.contacts.dao.api.enums.PhoneType;
 import com.itechart.d10.java.is.contacts.service.impl.ContactServiceImpl;
 import com.itechart.d10.java.is.contacts.service.impl.PhoneServiceImpl;
 
-public class AddPhoneOperation implements ICommand{
+public class SavePhoneOperation implements ICommand{
+        
+        private PhoneServiceImpl phoneServiceImpl = new PhoneServiceImpl();
+        private ContactServiceImpl contactServiceImpl = new ContactServiceImpl();
 	
-	
-	private static AddPhoneOperation instance;
+	private static SavePhoneOperation instance;
 
-	private AddPhoneOperation() {
+	private SavePhoneOperation() {
 	}
 
-	public static AddPhoneOperation getInstance() {
+	public static SavePhoneOperation getInstance() {
 		if (instance == null) {
-			instance = new AddPhoneOperation();
+			instance = new SavePhoneOperation();
 		}
 		return instance;
 	}
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		final IPhone entity = PhoneServiceImpl.getInstance().createEntity();
+		final IPhone entity = phoneServiceImpl.createEntity();
 		
-		final IContact contact = ContactServiceImpl.getInstance().createEntity();
+		final IContact contact = contactServiceImpl.createEntity();
 		if(request.getParameter("contactId") != null) {
 			contact.setId(Integer.parseInt(request.getParameter("contactId")));
 			entity.setContact(contact);
@@ -41,9 +43,8 @@ public class AddPhoneOperation implements ICommand{
 		entity.setPhoneType(PhoneType.valueOf(request.getParameter("phoneType")));
 		entity.setComment(request.getParameter("comment"));
 		
-		PhoneServiceImpl.getInstance().save(entity);
+		phoneServiceImpl.save(entity);
 		
-		ListPhoneOperation.getInstance().execute(request, response);
 	}
 
 }

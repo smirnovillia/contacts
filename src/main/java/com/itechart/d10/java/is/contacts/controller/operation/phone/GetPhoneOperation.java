@@ -11,33 +11,32 @@ import com.itechart.d10.java.is.contacts.controller.api.ICommand;
 import com.itechart.d10.java.is.contacts.dao.api.entity.IPhone;
 import com.itechart.d10.java.is.contacts.service.impl.PhoneServiceImpl;
 
-public class GetPhoneOperation implements ICommand{
-	
-	
-	private static GetPhoneOperation instance;
+public class GetPhoneOperation implements ICommand {
 
-	private GetPhoneOperation() {
-	}
+    private PhoneServiceImpl phoneServiceImpl = new PhoneServiceImpl();
 
-	public static GetPhoneOperation getInstance() {
-		if (instance == null) {
-			instance = new GetPhoneOperation();
-		}
-		return instance;
-	}
+    private static GetPhoneOperation instance;
 
-	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		final IPhone entity = PhoneServiceImpl.getInstance().getById(Integer.parseInt(request.getParameter("id")));
-		request.setAttribute("phone", entity);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/phone/form.jsp");
-		try {
-			dispatcher.forward(request, response);
-		} catch (ServletException | IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
+    private GetPhoneOperation() {
+    }
+
+    public static GetPhoneOperation getInstance() {
+        if (instance == null) {
+            instance = new GetPhoneOperation();
+        }
+        return instance;
+    }
+
+    @Override
+    public void execute(HttpServletRequest request, HttpServletResponse response) {
+        final IPhone entity = phoneServiceImpl.getById(Integer.parseInt(request.getParameter("id")));
+        request.setAttribute("phone", entity);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/phone/form.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

@@ -13,7 +13,7 @@
 
 		<form action="CommonServlet" method="POST">
 
-			<input type="hidden" name="operation" value="AddContactOperation" />
+			<input type="hidden" name="operation" value="SAVE_CONTACT" />
 
 			<table>
 				<tbody>

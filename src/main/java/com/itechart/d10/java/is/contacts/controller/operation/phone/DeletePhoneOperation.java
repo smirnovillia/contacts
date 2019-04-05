@@ -4,8 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itechart.d10.java.is.contacts.controller.api.ICommand;
+import com.itechart.d10.java.is.contacts.service.impl.PhoneServiceImpl;
 
 public class DeletePhoneOperation implements ICommand{
+    
+        private PhoneServiceImpl phoneServiceImpl = new PhoneServiceImpl();
 	
 	private static DeletePhoneOperation instance;
 

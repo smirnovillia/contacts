@@ -13,30 +13,32 @@ import com.itechart.d10.java.is.contacts.dao.api.entity.IPhone;
 import com.itechart.d10.java.is.contacts.service.impl.PhoneServiceImpl;
 
 public class ListPhoneOperation implements ICommand {
-	
-	private static ListPhoneOperation instance;
 
-	private ListPhoneOperation() {
-	}
+    private PhoneServiceImpl phoneServiceImpl = new PhoneServiceImpl();
 
-	public static ListPhoneOperation getInstance() {
-		if (instance == null) {
-			instance = new ListPhoneOperation();
-		}
-		return instance;
-	}
+    private static ListPhoneOperation instance;
 
-	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		List<IPhone> phoneList = PhoneServiceImpl.getInstance().getAll();
-		request.setAttribute("phoneList", phoneList);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/phone/list.jsp");
-		try {
-			dispatcher.forward(request, response);
-		} catch (ServletException | IOException e) {
-			e.printStackTrace();
-		}
+    private ListPhoneOperation() {
+    }
 
-	}
+    public static ListPhoneOperation getInstance() {
+        if (instance == null) {
+            instance = new ListPhoneOperation();
+        }
+        return instance;
+    }
+
+    @Override
+    public void execute(HttpServletRequest request, HttpServletResponse response) {
+        List<IPhone> phoneList = phoneServiceImpl.getAll();
+        request.setAttribute("phoneList", phoneList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/phone/list.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }

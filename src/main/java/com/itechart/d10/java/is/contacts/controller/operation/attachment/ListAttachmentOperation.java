@@ -14,6 +14,8 @@ import com.itechart.d10.java.is.contacts.service.impl.AttachmentServiceImpl;
 
 public class ListAttachmentOperation implements ICommand {
 	
+        private AttachmentServiceImpl attachmentServiceImpl = new AttachmentServiceImpl();
+        
 	private static ListAttachmentOperation instance;
 
 	private ListAttachmentOperation() {
@@ -28,7 +30,7 @@ public class ListAttachmentOperation implements ICommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		List<IAttachment> attachmentList = AttachmentServiceImpl.getInstance().getAll();
+		List<IAttachment> attachmentList = attachmentServiceImpl.getAll();
 		request.setAttribute("attachmentList", attachmentList);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/attachment/list.jsp");
 		try {

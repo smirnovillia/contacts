@@ -12,7 +12,8 @@ import com.itechart.d10.java.is.contacts.dao.api.entity.IAttachment;
 import com.itechart.d10.java.is.contacts.service.impl.AttachmentServiceImpl;
 
 public class GetAttachmentOperation implements ICommand {
-	
+    
+        private AttachmentServiceImpl attachmentServiceImpl = new AttachmentServiceImpl();
 	
 	private static GetAttachmentOperation instance;
 
@@ -28,7 +29,7 @@ public class GetAttachmentOperation implements ICommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-			final IAttachment entity = AttachmentServiceImpl.getInstance().getById(Integer.parseInt(request.getParameter("id")));
+			final IAttachment entity = attachmentServiceImpl.getById(Integer.parseInt(request.getParameter("id")));
 			request.setAttribute("attachment", entity);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/attachment/form.jsp");
 			try {

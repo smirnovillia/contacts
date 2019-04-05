@@ -95,8 +95,7 @@ public abstract class AbsractDaoImpl<ENTITY, ID> implements IBaseDao<ENTITY, ID>
 			return action.doWithStatement(stmt);
 
 		} catch (final SQLException e) {
-			throw new SQLExecutionException(e); // wrap catchable exception with
-			// runtime
+			throw new SQLExecutionException(e); 
 		}
 	}
 
@@ -179,12 +178,12 @@ public abstract class AbsractDaoImpl<ENTITY, ID> implements IBaseDao<ENTITY, ID>
 		InitialContext initContext = null;
 		try {
 			initContext = new InitialContext();
-		} catch (NamingException e) {
-			e.printStackTrace();
+		} catch (NamingException e1) {
+			e1.printStackTrace();
 		}
 		DataSource ds = null;
 		try {
-			ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/postgres");
+			ds = (DataSource) initContext.lookup("java:comp/env/jdbc/postgres");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}

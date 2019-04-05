@@ -12,30 +12,31 @@ import com.itechart.d10.java.is.contacts.dao.api.entity.IContact;
 import com.itechart.d10.java.is.contacts.service.impl.ContactServiceImpl;
 
 public class GetContactOperation implements ICommand {
-	
-	
-	private static GetContactOperation instance;
 
-	private GetContactOperation() {
-	}
+    private ContactServiceImpl contactServiceImpl = new ContactServiceImpl();
 
-	public static GetContactOperation getInstance() {
-		if (instance == null) {
-			instance = new GetContactOperation();
-		}
-		return instance;
-	}
+    private static GetContactOperation instance;
 
-	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		final IContact entity = ContactServiceImpl.getInstance().getById(Integer.parseInt(request.getParameter("id")));
-		request.setAttribute("contact", entity);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/contact/form.jsp");
-		try {
-			dispatcher.forward(request, response);
-		} catch (ServletException | IOException e) {
-			e.printStackTrace();
-		}
-	}
+    private GetContactOperation() {
+    }
+
+    public static GetContactOperation getInstance() {
+        if (instance == null) {
+            instance = new GetContactOperation();
+        }
+        return instance;
+    }
+
+    @Override
+    public void execute(HttpServletRequest request, HttpServletResponse response) {
+        final IContact entity = contactServiceImpl.getById(Integer.parseInt(request.getParameter("id")));
+        request.setAttribute("contact", entity);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/contact/form.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
