@@ -23,9 +23,8 @@ public class DeleteContactOperation implements ICommand {
     }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) {
-        // TODO Auto-generated method stub
-
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
+        return "success";
     }
 
 }

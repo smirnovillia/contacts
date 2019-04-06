@@ -19,8 +19,8 @@ public class SaveContactOperation implements ICommand {
 
     private static SaveContactOperation instance;
 
-    private SaveContactOperation() {
-        
+    public SaveContactOperation() {
+
     }
 
     public static SaveContactOperation getInstance() {
@@ -56,14 +56,9 @@ public class SaveContactOperation implements ICommand {
         entity.setHouseNumber(request.getParameter("houseNumber"));
         entity.setApartment(Integer.parseInt(request.getParameter("apartment")));
         entity.setZip(request.getParameter("zip"));
-        
-        try {
-            contactServiceImpl.save(entity);
-            return "${pageContext.request.contextPath}/jsp/contact/form.jsp";
-        } catch(Exception e) {
-               request.setAttribute("errorMessage", e.getMessage());
-               return "failure.jsp";
-        }
+
+        contactServiceImpl.save(entity);
+        return "/controller/jsp/contact/list.jsp";
     }
 
 }

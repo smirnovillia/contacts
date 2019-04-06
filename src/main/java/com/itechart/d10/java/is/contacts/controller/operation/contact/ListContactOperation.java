@@ -1,10 +1,7 @@
 package com.itechart.d10.java.is.contacts.controller.operation.contact;
 
-import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,7 +15,7 @@ public class ListContactOperation implements ICommand {
 
     private static ListContactOperation instance;
 
-    private ListContactOperation() {
+    public ListContactOperation() {
     }
 
     public static ListContactOperation getInstance() {
@@ -29,16 +26,10 @@ public class ListContactOperation implements ICommand {
     }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         List<IContact> contactsFromDb = contactServiceImpl.getAll();
         request.setAttribute("contactList", contactsFromDb);
-        String url = "jsp/contact/list.jsp";
-        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-        try {
-            dispatcher.forward(request, response);
-        } catch (ServletException | IOException e) {
-            e.printStackTrace();
-        }
+        return "/controller/jsp/contact/list.jsp";
     }
 
 }

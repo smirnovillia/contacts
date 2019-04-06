@@ -5,32 +5,30 @@
  */
 package com.itechart.d10.java.is.contacts.controller;
 
+import com.itechart.d10.java.is.contacts.controller.api.ICommand;
+import com.itechart.d10.java.is.contacts.controller.operation.contact.DeleteContactOperation;
+import com.itechart.d10.java.is.contacts.controller.operation.contact.GetContactOperation;
+import com.itechart.d10.java.is.contacts.controller.operation.contact.ListContactOperation;
+import com.itechart.d10.java.is.contacts.controller.operation.contact.SaveContactOperation;
+
 /**
  *
  * @author illiasmirnov
  */
 public enum Operation {
     
-    SAVE_CONTACT("contact/form.jsp"),
-    GET_CONTACT("contact/{%s}"),
-    DELETE_CONTACT(""),
-    LIST_CONTACT("contact/list.jsp"),
-    SAVE_ATTACHMENT("attachment/form.jsp"),
-    GET_ATTACHMENT("attachment/{%s}"),
-    DELETE_ATTACHMENT(""),
-    LIST_ATTACHMENT("attachment/list.jsp"),
-    SAVE_PHONE("phone/form.jsp"),
-    GET_PHONE("phone/{%s}"),
-    DELETE_PHONE(""),
-    LIST_PHONE("phone/list.jsp");
+    SAVE_CONTACT(SaveContactOperation.getInstance()),
+    GET_CONTACT(GetContactOperation.getInstance()),
+    DELETE_CONTACT(DeleteContactOperation.getInstance()),
+    LIST_CONTACT(ListContactOperation.getInstance());
     
-    private String jspPage;
+    private ICommand command;
     
-    private Operation(String jspPage){
-        this.jspPage = jspPage;
+    private Operation(ICommand command){
+        this.command = command;
     }
     
-    public String getPage(){
-        return jspPage;
+    public ICommand getCommand(){
+        return command;
     }
 }

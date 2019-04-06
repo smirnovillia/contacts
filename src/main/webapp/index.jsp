@@ -1,7 +1,5 @@
 <html>
 <body>
-    <%
-        response.sendRedirect("${pageContext.request.contextPath}/jsp/contact/list.jsp");
-    %>
+     <jsp:forward page="/controller/jsp/contact/list.jsp"/>
 </body>
 </html>
