@@ -28,7 +28,7 @@ public class SaveAttachmentOperation implements ICommand{
 
 	
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) {
+	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		final IAttachment entity = attachmentServiceImpl.createEntity();
 		
 		final IContact contact = contactServiceImpl.createEntity();
@@ -42,6 +42,8 @@ public class SaveAttachmentOperation implements ICommand{
 		entity.setComment(request.getParameter("comment"));
 		
 		attachmentServiceImpl.save(entity);
+                
+                return "${pageContext.request.contextPath}/jsp/attachment/form.jsp";
 		
 	}
 

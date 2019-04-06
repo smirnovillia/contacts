@@ -11,8 +11,26 @@ package com.itechart.d10.java.is.contacts.controller;
  */
 public enum Operation {
     
-    SAVE_CONTACT, GET_CONTACT, DELETE_CONTACT, LIST_CONTACT,
-    SAVE_ATTACHMENT, GET_ATTACHMENT, DELETE_ATTACHMENT, LIST_ATTACHMENT,
-    SAVE_PHONE, GET_PHONE, DELETE_PHONE, LIST_PHONE
+    SAVE_CONTACT("contact/form.jsp"),
+    GET_CONTACT("contact/{%s}"),
+    DELETE_CONTACT(""),
+    LIST_CONTACT("contact/list.jsp"),
+    SAVE_ATTACHMENT("attachment/form.jsp"),
+    GET_ATTACHMENT("attachment/{%s}"),
+    DELETE_ATTACHMENT(""),
+    LIST_ATTACHMENT("attachment/list.jsp"),
+    SAVE_PHONE("phone/form.jsp"),
+    GET_PHONE("phone/{%s}"),
+    DELETE_PHONE(""),
+    LIST_PHONE("phone/list.jsp");
     
+    private String jspPage;
+    
+    private Operation(String jspPage){
+        this.jspPage = jspPage;
+    }
+    
+    public String getPage(){
+        return jspPage;
+    }
 }
