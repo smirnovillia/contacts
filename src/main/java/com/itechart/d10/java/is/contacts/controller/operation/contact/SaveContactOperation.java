@@ -12,6 +12,9 @@ import com.itechart.d10.java.is.contacts.dao.api.entity.IContact;
 import com.itechart.d10.java.is.contacts.dao.api.enums.Gender;
 import com.itechart.d10.java.is.contacts.dao.api.enums.MaritalStatus;
 import com.itechart.d10.java.is.contacts.service.impl.ContactServiceImpl;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SaveContactOperation implements ICommand {
 
@@ -57,7 +60,11 @@ public class SaveContactOperation implements ICommand {
         entity.setApartment(Integer.parseInt(request.getParameter("apartment")));
         entity.setZip(request.getParameter("zip"));
         contactServiceImpl.save(entity);
-
+        try {
+            response.sendRedirect("/contacts");
+        } catch (IOException ex) {
+            Logger.getLogger(SaveContactOperation.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

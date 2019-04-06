@@ -109,7 +109,7 @@
 
 
 		<p>
-			<a href="list.jsp">Back to List</a>
+			<a href="${pageContext.request.contextPath}">Back to List</a>
 		</p>
 	</div>
 

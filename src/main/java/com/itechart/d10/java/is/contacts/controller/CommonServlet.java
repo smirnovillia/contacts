@@ -45,16 +45,17 @@ public class CommonServlet extends HttpServlet {
 		comands.put(Operation.GET_ATTACHMENT, GetAttachmentOperation.getInstance());
 	}
 
-	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+	private void processRequest(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			if (request.getParameter("operation") != null) {
 				String operation = request.getParameter("operation");
 				comands.get(Operation.valueOf(operation)).execute(request, response);
+                                
 			} else {
 				comands.get(Operation.LIST_CONTACT).execute(request, response);
 			}
 		} catch (Exception e) {
-			throw new ServletException();
+			e.getMessage();
 		}
 	}
 

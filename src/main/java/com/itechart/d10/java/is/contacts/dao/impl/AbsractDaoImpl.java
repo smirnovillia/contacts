@@ -14,7 +14,7 @@ import java.util.Set;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import org.apache.tomcat.jdbc.pool.DataSource;
+import javax.sql.DataSource;
 
 import com.itechart.d10.java.is.contacts.dao.api.IBaseDao;
 import com.itechart.d10.java.is.contacts.dao.api.filter.AbstractFilter;
