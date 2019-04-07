@@ -15,10 +15,10 @@
 		<h3>List Contact</h3>
 		
 		<p>
-			<a href="${pageContext.request.contextPath}/jsp/contact/form.jsp">Add contact</a>
+			<a href="${pageContext.request.contextPath}/jsp/contact.jsp">Add contact</a>
 		</p>
 
-		<form action="CommonServlet" method="GET">
+		<form action="${pageContext.request.contextPath}/controller" method="GET">
 
 			<input type="hidden" name="operation" value="LIST_CONTACT" />
 

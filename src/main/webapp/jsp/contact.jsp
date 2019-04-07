@@ -11,7 +11,7 @@
 	<div id="container">
 		<h3>Add Contact</h3>
 
-		<form action="CommonServlet" method="POST">
+		<form action="${pageContext.request.contextPath}/controller" method="POST">
 
 			<input type="hidden" name="operation" value="SAVE_CONTACT" />
 
@@ -109,7 +109,7 @@
 
 
 		<p>
-			<a href="${pageContext.request.contextPath}">Back to List</a>
+			<a href="${pageContext.request.contextPath}/controller?operation=LIST_CONTACT">Back to List</a>
 		</p>
 	</div>
 

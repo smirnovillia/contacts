@@ -1,6 +1,6 @@
 <%-- 
     Document   : error
-    Created on : Apr 7, 2019, 12:29:18 AM
+    Created on : Apr 6, 2019, 10:24:24 PM
     Author     : illiasmirnov
 --%>
 
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Not fixed yet</h1>
+        <h1>The page was missing</h1>
     </body>
 </html>

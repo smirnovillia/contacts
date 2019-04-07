@@ -29,7 +29,7 @@ public class ListContactOperation implements ICommand {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         List<IContact> contactsFromDb = contactServiceImpl.getAll();
         request.setAttribute("contactList", contactsFromDb);
-        return "/controller/jsp/contact/list.jsp";
+        return "/jsp/list.jsp";
     }
 
 }

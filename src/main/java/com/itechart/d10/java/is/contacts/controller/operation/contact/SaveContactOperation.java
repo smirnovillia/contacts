@@ -58,7 +58,7 @@ public class SaveContactOperation implements ICommand {
         entity.setZip(request.getParameter("zip"));
 
         contactServiceImpl.save(entity);
-        return "/controller/jsp/contact/list.jsp";
+        return "/controller?operation=LIST_CONTACT";
     }
 
 }

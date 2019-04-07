@@ -1,6 +1,6 @@
 <%-- 
-    Document   : error
-    Created on : Apr 7, 2019, 12:29:18 AM
+    Document   : error500
+    Created on : Apr 7, 2019, 12:06:52 AM
     Author     : illiasmirnov
 --%>
 
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Not fixed yet</h1>
+        <h1>Something goes wrong!</h1>
     </body>
 </html>

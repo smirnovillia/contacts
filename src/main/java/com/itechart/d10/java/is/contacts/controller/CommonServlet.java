@@ -32,19 +32,17 @@ public class CommonServlet extends HttpServlet {
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String operation = request.getParameter("operation");
         try {
-            String operation = request.getParameter("operation");
-            if (operation == null || operation.isEmpty()) {
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("jsp/erros.jsp");
+            String page = comands.get(Operation.valueOf(operation)).execute(request,response);
+            if (page != null) {
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
                 dispatcher.forward(request, response);
-            }
-            String page = comands.get(Operation.valueOf(operation)).execute(request, response);
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-            dispatcher.forward(request, response);
+            } 
         } catch (Exception e) {
-            e.getMessage();
             response.sendRedirect(request.getContextPath() + "/jsp/error.jsp");
         }
+        
     }
 
     @Override
