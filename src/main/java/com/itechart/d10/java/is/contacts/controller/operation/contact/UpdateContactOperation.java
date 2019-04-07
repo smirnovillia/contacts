@@ -7,18 +7,18 @@ import com.itechart.d10.java.is.contacts.controller.api.ICommand;
 import com.itechart.d10.java.is.contacts.dao.api.entity.IContact;
 import com.itechart.d10.java.is.contacts.service.impl.ContactServiceImpl;
 
-public class GetContactOperation implements ICommand {
+public class UpdateContactOperation implements ICommand {
 
     private ContactServiceImpl contactServiceImpl = new ContactServiceImpl();
 
-    private static GetContactOperation instance;
+    private static UpdateContactOperation instance;
 
-    private GetContactOperation() {
+    private UpdateContactOperation() {
     }
 
-    public static GetContactOperation getInstance() {
+    public static UpdateContactOperation getInstance() {
         if (instance == null) {
-            instance = new GetContactOperation();
+            instance = new UpdateContactOperation();
         }
         return instance;
     }

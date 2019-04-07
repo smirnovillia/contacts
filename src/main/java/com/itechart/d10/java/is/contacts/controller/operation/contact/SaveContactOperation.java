@@ -52,6 +52,7 @@ public class SaveContactOperation implements ICommand {
         entity.setMaritalStatus(MaritalStatus.valueOf(request.getParameter("maritalStatus")));
         entity.setWebsite(request.getParameter("website"));
         entity.setEmail(request.getParameter("email"));
+        entity.setCompany(request.getParameter("company"));
         entity.setCountry(request.getParameter("country"));
         entity.setCity(request.getParameter("city"));
         entity.setStreet(request.getParameter("street"));

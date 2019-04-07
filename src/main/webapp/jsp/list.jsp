@@ -33,7 +33,11 @@
                     </tr>
                     <tbody>
                         <c:forEach items="${contactList}" var="contact" >
-                            <tr> <td>${contact.getFullName()}</td>
+                            <c:url var="contactLink" value="/controller">
+                                <c:param name="operation" value="SAVE_CONTACT"/>
+                                <c:param name="contactId" value="${contact.id}"/>
+                            </c:url>
+                            <tr> <td><a href="${contactLink}">${contact.getFullName()}</td>
                                 <td>${contact.birthday}</td> 
                                 <td>${contact.getFullAddress()}</td> 
                                 <td>${contact.company}</td> 
