@@ -8,72 +8,80 @@ import com.itechart.d10.java.is.contacts.dao.api.enums.MaritalStatus;
 
 public interface IContact extends IBaseEntity {
 
-	String getFirstName();
+    String getFirstName();
 
-	void setFirstName(String firstName);
+    void setFirstName(String firstName);
 
-	String getMidleName();
+    String getMidleName();
 
-	void setMidleName(String midleName);
+    void setMidleName(String midleName);
 
-	String getLastName();
+    String getLastName();
 
-	void setLastName(String lastName);
+    void setLastName(String lastName);
 
-	Date getBirthday();
+    Date getBirthday();
 
-	void setBirthday(Date birthday);
+    void setBirthday(Date birthday);
 
-	Gender getGender();
+    Gender getGender();
 
-	void setGender(Gender gender);
+    void setGender(Gender gender);
 
-	String getCitizenship();
+    String getCitizenship();
 
-	void setCitizenship(String citizenship);
+    void setCitizenship(String citizenship);
 
-	MaritalStatus getMaritalStatus();
+    MaritalStatus getMaritalStatus();
 
-	void setMaritalStatus(MaritalStatus maritalStatus);
+    void setMaritalStatus(MaritalStatus maritalStatus);
 
-	String getWebsite();
+    String getWebsite();
 
-	void setWebsite(String website);
+    void setWebsite(String website);
 
-	String getCompany();
+    String getEmail();
 
-	void setCompany(String company);
+    void setEmail(String email);
 
-	String getCountry();
+    String getCompany();
 
-	void setCountry(String country);
+    void setCompany(String company);
 
-	String getCity();
+    String getCountry();
 
-	void setCity(String city);
+    void setCountry(String country);
 
-	String getStreet();
+    String getCity();
 
-	void setStreet(String street);
+    void setCity(String city);
 
-	String getHouseNumber();
+    String getStreet();
 
-	void setHouseNumber(String houseNumber);
+    void setStreet(String street);
 
-	Integer getApartment();
+    String getHouseNumber();
 
-	void setApartment(Integer apartment);
+    void setHouseNumber(String houseNumber);
 
-	String getZip();
+    Integer getApartment();
 
-	void setZip(String zip);
+    void setApartment(Integer apartment);
 
-	Date getCreated();
+    String getZip();
 
-	void setCreated(Date created);
+    void setZip(String zip);
 
-	Date getUpdated();
+    Date getCreated();
 
-	void setUpdated(Date updated);
+    void setCreated(Date created);
+
+    Date getUpdated();
+
+    void setUpdated(Date updated);
+    
+    String getFullName();
+    
+    String getFullAddress();
 
 }

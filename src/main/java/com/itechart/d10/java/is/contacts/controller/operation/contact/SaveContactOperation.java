@@ -37,19 +37,21 @@ public class SaveContactOperation implements ICommand {
         entity.setMidleName(request.getParameter("midleName"));
         entity.setLastName(request.getParameter("lastName"));
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String bDay = request.getParameter("birthday");
         Date birthday = null;
         try {
-            birthday = dateFormat.parse(bDay);
+            birthday = new Date(dateFormat.parse(bDay).getTime());
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
         entity.setBirthday(birthday);
         entity.setGender(Gender.valueOf(request.getParameter("gender")));
         entity.setCitizenship(request.getParameter("citizenship"));
         entity.setMaritalStatus(MaritalStatus.valueOf(request.getParameter("maritalStatus")));
         entity.setWebsite(request.getParameter("website"));
+        entity.setEmail(request.getParameter("email"));
         entity.setCountry(request.getParameter("country"));
         entity.setCity(request.getParameter("city"));
         entity.setStreet(request.getParameter("street"));

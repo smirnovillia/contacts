@@ -62,6 +62,11 @@
 						<td><label>Website:</label></td>
 						<td><input type="text" name="website" /></td>
 					</tr>
+                                        
+                                        <tr>
+						<td><label>Email:</label></td>
+						<td><input type="email" name="email" /></td>
+					</tr>
 
 					<tr>
 						<td><label>Company:</label></td>

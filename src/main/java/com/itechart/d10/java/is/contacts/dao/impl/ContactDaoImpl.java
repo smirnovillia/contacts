@@ -25,7 +25,7 @@ public class ContactDaoImpl extends AbsractDaoImpl<IContact, Integer> implements
 	public void update(IContact entity) {
 		executeStatement(new PreparedStatementAction<IContact>(String.format(
 				"update %s set first_name=?, midle_name=?, last_name=?, birthday=?, gender=?, citizenship=?,"
-						+ "marital_status=?, website=?, company=?, country=?, city=?, street=?, house_number=?, apartment=?, zip=?, updated=? where id=?",
+						+ "marital_status=?, website=?, email=?, company=?, country=?, city=?, street=?, house_number=?, apartment=?, zip=?, updated=? where id=?",
 				getTableName())) {
 
 			@Override
@@ -38,15 +38,16 @@ public class ContactDaoImpl extends AbsractDaoImpl<IContact, Integer> implements
 				pStmt.setString(6, entity.getCitizenship());
 				pStmt.setString(7, entity.getMaritalStatus().toString());
 				pStmt.setString(8, entity.getWebsite());
-				pStmt.setString(9, entity.getCompany());
-				pStmt.setString(10, entity.getCountry());
-				pStmt.setString(11, entity.getCity());
-				pStmt.setString(12, entity.getStreet());
-				pStmt.setString(13, entity.getHouseNumber());
-				pStmt.setInt(14, entity.getApartment());
-				pStmt.setString(15, entity.getZip());
-				pStmt.setObject(16, entity.getUpdated(), Types.TIMESTAMP);
-				pStmt.setInt(17, entity.getId());
+                                pStmt.setString(9, entity.getEmail());
+				pStmt.setString(10, entity.getCompany());
+				pStmt.setString(11, entity.getCountry());
+				pStmt.setString(12, entity.getCity());
+				pStmt.setString(13, entity.getStreet());
+				pStmt.setString(14, entity.getHouseNumber());
+				pStmt.setInt(15, entity.getApartment());
+				pStmt.setString(16, entity.getZip());
+				pStmt.setObject(17, entity.getUpdated(), Types.TIMESTAMP);
+				pStmt.setInt(18, entity.getId());
 
 				pStmt.executeUpdate();
 				return entity;
@@ -60,7 +61,7 @@ public class ContactDaoImpl extends AbsractDaoImpl<IContact, Integer> implements
 	public void insert(IContact entity) {
 		executeStatement(new PreparedStatementAction<IContact>(String.format(
 				"insert into %s (first_name, midle_name, last_name, birthday, gender, citizenship, marital_status,"
-						+ " website, company, company=?, country=?, city=?, street=?, house_number=?, apartment=?, zip=?, created, updated) values(?,?,?,?,?,?,?,?,?,?,?,?)",
+						+ " website, email, company, country, city, street, house_number, apartment, zip, created, updated) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
 				getTableName()), true) {
 
 			@Override
@@ -68,20 +69,21 @@ public class ContactDaoImpl extends AbsractDaoImpl<IContact, Integer> implements
 				pStmt.setString(1, entity.getFirstName());
 				pStmt.setString(2, entity.getMidleName());
 				pStmt.setString(3, entity.getLastName());
-				pStmt.setObject(4, entity.getBirthday());
+				pStmt.setObject(4, entity.getBirthday(), Types.DATE);
 				pStmt.setString(5, entity.getGender().toString());
 				pStmt.setString(6, entity.getCitizenship());
 				pStmt.setString(7, entity.getMaritalStatus().toString());
 				pStmt.setString(8, entity.getWebsite());
-				pStmt.setString(9, entity.getCompany());
-				pStmt.setString(10, entity.getCountry());
-				pStmt.setString(11, entity.getCity());
-				pStmt.setString(12, entity.getStreet());
-				pStmt.setString(13, entity.getHouseNumber());
-				pStmt.setInt(14, entity.getApartment());
-				pStmt.setString(15, entity.getZip());
-				pStmt.setObject(16, entity.getCreated(), Types.TIMESTAMP);
-				pStmt.setObject(17, entity.getUpdated(), Types.TIMESTAMP);
+                                pStmt.setString(9, entity.getEmail());
+				pStmt.setString(10, entity.getCompany());
+				pStmt.setString(11, entity.getCountry());
+				pStmt.setString(12, entity.getCity());
+				pStmt.setString(13, entity.getStreet());
+				pStmt.setString(14, entity.getHouseNumber());
+				pStmt.setInt(15, entity.getApartment());
+				pStmt.setString(16, entity.getZip());
+				pStmt.setObject(17, entity.getCreated(), Types.TIMESTAMP);
+				pStmt.setObject(18, entity.getUpdated(), Types.TIMESTAMP);
 
 				pStmt.executeUpdate();
 
@@ -113,7 +115,7 @@ public class ContactDaoImpl extends AbsractDaoImpl<IContact, Integer> implements
 		entity.setCitizenship(resultSet.getString("citizenship"));
 		entity.setMaritalStatus(MaritalStatus.valueOf(resultSet.getString("marital_status")));
 		entity.setWebsite(resultSet.getString("website"));
-		entity.setCompany("company");
+                entity.setEmail(resultSet.getString("email"));
 		entity.setCountry(resultSet.getString("country"));
 		entity.setCity(resultSet.getString("city"));
 		entity.setStreet(resultSet.getString("street"));

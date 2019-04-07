@@ -16,6 +16,7 @@ public class Contact extends BaseEntity implements IContact {
 	private String citizenship;
 	private MaritalStatus maritalStatus;
 	private String website;
+        private String email;
 	private String company;
 	private String country;
 	private String city;
@@ -89,6 +90,14 @@ public class Contact extends BaseEntity implements IContact {
 	public void setWebsite(String website) {
 		this.website = website;
 	}
+        
+        public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getCompany() {
 		return company;
@@ -161,5 +170,29 @@ public class Contact extends BaseEntity implements IContact {
 	public void setUpdated(Date updated) {
 		this.updated = updated;
 	}
+        
+        public String getFullName(){
+            StringBuilder sb = new StringBuilder();
+            if(getMidleName() != null){
+                sb.append(getFirstName()).append(" ").
+                        append(getMidleName()).append(" ").
+                        append(getLastName());
+            } else {
+                sb.append(getFirstName()).append(" ").
+                        append(getLastName());
+            }
+            return sb.toString();
+        }
+        
+        public String getFullAddress(){
+            StringBuilder sb = new StringBuilder();
+            sb.append(getZip()).append(" ").
+                    append(getCountry()).append(" ").
+                    append(getCity()).append(" ").
+                    append(getStreet()).append(" ").
+                    append(getHouseNumber()).append(" ").
+                    append(getApartment()).append(" ");
+            return sb.toString();
+        }
 
 }
