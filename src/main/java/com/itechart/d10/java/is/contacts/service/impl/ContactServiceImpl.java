@@ -8,55 +8,118 @@ import com.itechart.d10.java.is.contacts.dao.api.entity.IContact;
 import com.itechart.d10.java.is.contacts.dao.api.filter.ContactFilter;
 import com.itechart.d10.java.is.contacts.dao.impl.ContactDaoImpl;
 import com.itechart.d10.java.is.contacts.service.IContactService;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.Address;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 public class ContactServiceImpl implements IContactService {
 
-	private IContactDao dao;
-	
-        public ContactServiceImpl(){
-            dao = new ContactDaoImpl();
+    private IContactDao dao;
+
+    public ContactServiceImpl() {
+        dao = new ContactDaoImpl();
+    }
+
+    @Override
+    public IContact getById(Integer id) {
+        return dao.getById(id);
+    }
+
+    @Override
+    public List<IContact> getAll() {
+        return dao.getAll();
+    }
+
+    @Override
+    public void save(IContact entity) {
+        final Date modifedOn = new Date();
+        entity.setUpdated(modifedOn);
+        if (entity.getId() == null) {
+            entity.setCreated(modifedOn);
+            dao.insert(entity);
+        } else {
+            dao.update(entity);
         }
-        
-	@Override
-	public IContact getById(Integer id) {
-		return dao.getById(id);
-	}
+    }
 
-	@Override
-	public List<IContact> getAll() {
-		return dao.getAll();
-	}
+    @Override
+    public void delete(Integer id) {
+        dao.deleteById(id);
+    }
 
-	@Override
-	public void save(IContact entity) {
-		final Date modifedOn = new Date();
-		entity.setUpdated(modifedOn);
-		if(entity.getId() == null) {
-			entity.setCreated(modifedOn);
-			dao.insert(entity);
-		} else {
-			dao.update(entity);
-		}
-	}
+    @Override
+    public void deleteAll() {
+        dao.deleteAll();
+    }
 
-	@Override
-	public void delete(Integer id) {
-		dao.deleteById(id);
-	}
+    @Override
+    public IContact createEntity() {
+        return dao.createEntity();
+    }
 
-	@Override
-	public void deleteAll() {
-		dao.deleteAll();
-	}
+    @Override
+    public List<IContact> find(ContactFilter filter) {
+        return dao.find(filter);
+    }
 
-	@Override
-	public IContact createEntity() {
-		return dao.createEntity();
-	}
+    public void sendEmail(String[] recipient, String subject,String content) {
+        try {
+            String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+            Properties prop = new Properties();
+            try {
+                prop.load(new FileInputStream(rootPath + "mail-config.properties"));
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(ContactServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ContactServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Session session = Session.getInstance(prop, new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(prop.getProperty("mail.username"), prop.getProperty("mail.password"));
+                }
+            });
+            Message message = new MimeMessage(session);
+            try {
+                message.setFrom(new InternetAddress(prop.getProperty("mail.username")));
+            } catch (AddressException ex) {
+            } catch (MessagingException ex) {
+            }
+            try {
+                Address[] to = new Address[recipient.length];
+                for (int i = 0; i < to.length; i++) {
+                    to[i] = new InternetAddress(recipient[i]);
+                }
+                message.addRecipients(Message.RecipientType.TO, to);
+            } catch (AddressException ex) {
+            } catch (MessagingException ex) {
+            }
+            message.setSubject(subject);
+            
+            message.setText(content);
+            
+            Transport.send(message);
+            
+        } catch (MessagingException ex) {
+            Logger.getLogger(ContactServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-	@Override
-	public List<IContact> find(ContactFilter filter) {
-		return dao.find(filter);
-	}
+    }
 
 }

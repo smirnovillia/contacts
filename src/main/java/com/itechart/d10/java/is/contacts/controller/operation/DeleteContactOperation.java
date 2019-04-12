@@ -1,4 +1,4 @@
-package com.itechart.d10.java.is.contacts.controller.operation.contact;
+package com.itechart.d10.java.is.contacts.controller.operation;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

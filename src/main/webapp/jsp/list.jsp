@@ -19,6 +19,8 @@
     <form action="${pageContext.request.contextPath}/controller" method="GET">
 
         <input type="submit" name="operation" value="DELETE_CONTACT" onclick="form.action = '${pageContext.request.contextPath}/controller';">
+        
+        <input type="submit" name="operation" value="SEND_EMAIL" onclick="form.action = '${pageContext.request.contextPath}/controller';">
 
         <table border="1">
 

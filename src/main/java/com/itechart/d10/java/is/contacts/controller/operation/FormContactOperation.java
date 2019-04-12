@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.itechart.d10.java.is.contacts.controller.operation.contact;
+package com.itechart.d10.java.is.contacts.controller.operation;
 
 import com.itechart.d10.java.is.contacts.controller.api.ICommand;
 import com.itechart.d10.java.is.contacts.dao.api.entity.IContact;
@@ -21,7 +21,7 @@ public class FormContactOperation implements ICommand {
 
     private static FormContactOperation instance;
 
-    public FormContactOperation() {
+    private FormContactOperation() {
 
     }
 

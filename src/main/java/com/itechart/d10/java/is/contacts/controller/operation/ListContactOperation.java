@@ -1,4 +1,4 @@
-package com.itechart.d10.java.is.contacts.controller.operation.contact;
+package com.itechart.d10.java.is.contacts.controller.operation;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class ListContactOperation implements ICommand {
 
     private static ListContactOperation instance;
 
-    public ListContactOperation() {
+    private ListContactOperation() {
     }
 
     public static ListContactOperation getInstance() {

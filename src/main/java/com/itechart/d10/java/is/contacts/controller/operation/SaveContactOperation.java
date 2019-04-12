@@ -1,4 +1,4 @@
-package com.itechart.d10.java.is.contacts.controller.operation.contact;
+package com.itechart.d10.java.is.contacts.controller.operation;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,7 +19,7 @@ public class SaveContactOperation implements ICommand {
 
     private static SaveContactOperation instance;
 
-    public SaveContactOperation() {
+    private SaveContactOperation() {
 
     }
 
