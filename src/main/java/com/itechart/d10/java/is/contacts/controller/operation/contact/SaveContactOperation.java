@@ -32,11 +32,19 @@ public class SaveContactOperation implements ICommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        final IContact entity = contactServiceImpl.createEntity();
+        IContact entity = null;
+        request.setAttribute("contact", entity);
+        if ("".equals(request.getParameter("contactId"))) {
+            entity = contactServiceImpl.createEntity();
+        } else {
+            Integer contactId = Integer.parseInt(request.getParameter("contactId"));
+            entity = contactServiceImpl.getById(contactId);
+            entity.setId(contactId);
+        }
         entity.setFirstName(request.getParameter("firstName"));
         entity.setMidleName(request.getParameter("midleName"));
         entity.setLastName(request.getParameter("lastName"));
-
+        
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String bDay = request.getParameter("birthday");
         Date birthday = null;

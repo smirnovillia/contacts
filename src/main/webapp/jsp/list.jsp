@@ -11,44 +11,44 @@
     </head>
 
     <body>
+        <a onclick="window.location.href = '${pageContext.request.contextPath}/controller?operation=FORM_CONTACT'"
+           /> Add contact </a>
 
-        <div id="container">
-            <h3>List Contact</h3>
+    <input type="hidden" name="operation" value="LIST_CONTACT" />
 
-            <p>
-                <a href="${pageContext.request.contextPath}/jsp/contact.jsp">Add contact</a>
-            </p>
+    <form action="${pageContext.request.contextPath}/controller" method="GET">
 
-            <form action="${pageContext.request.contextPath}/controller" method="GET">
+        <input type="submit" name="operation" value="DELETE_CONTACT" onclick="form.action = '${pageContext.request.contextPath}/controller';">
 
-                <input type="hidden" name="operation" value="LIST_CONTACT" />
+        <table border="1">
 
-                <table border="1">
+            <tr>
+                <th></th>
+                <th>Full name</th>
+                <th>Birthday</th>
+                <th>Address</th>
+                <th>Company</th>
+            </tr>
+            <tbody>
+                <c:forEach items="${contactList}" var="contact" >
 
                     <tr>
-                        <th>Full name</th>
-                        <th>Birthday</th>
-                        <th>Address</th>
-                        <th>Company</th>
-                    </tr>
-                    <tbody>
-                        <c:forEach items="${contactList}" var="contact" >
+                        <td><input type="checkbox" name="labeled" value="${contact.id}"></td>
                             <c:url var="contactLink" value="/controller">
-                                <c:param name="operation" value="SAVE_CONTACT"/>
+                                <c:param name="operation" value="FORM_CONTACT"/>
                                 <c:param name="contactId" value="${contact.id}"/>
                             </c:url>
-                            <tr> <td><a href="${contactLink}">${contact.getFullName()}</td>
-                                <td>${contact.birthday}</td> 
-                                <td>${contact.getFullAddress()}</td> 
-                                <td>${contact.company}</td> 
-                            </tr>
-                        </c:forEach>
+                        <td><a href="${contactLink}">${contact.firstName} ${contact.midleName} ${contact.lastName}</td>
+                        <td>${contact.birthday}</td> 
+                        <td>${contact.zip}, ${contact.country}, ${contact.city}, ${contact.street}, ${contact.houseNumber}, ${contact.apartment}</td> 
+                        <td>${contact.company}</td> 
+                    </tr>
+                </c:forEach>
 
-                    </tbody>
-                </table>
-            </form>
-        </div>
-    </body>
+            </tbody>
+        </table>
+    </form>
+</body>
 
 
 </html>

@@ -33,7 +33,7 @@ public class ContactDaoImpl extends AbsractDaoImpl<IContact, Integer> implements
 				pStmt.setString(1, entity.getFirstName());
 				pStmt.setString(2, entity.getMidleName());
 				pStmt.setString(3, entity.getLastName());
-				pStmt.setObject(4, entity.getBirthday());
+				pStmt.setObject(4, entity.getBirthday(), Types.DATE);
 				pStmt.setString(5, entity.getGender().toString());
 				pStmt.setString(6, entity.getCitizenship());
 				pStmt.setString(7, entity.getMaritalStatus().toString());
@@ -116,6 +116,7 @@ public class ContactDaoImpl extends AbsractDaoImpl<IContact, Integer> implements
 		entity.setMaritalStatus(MaritalStatus.valueOf(resultSet.getString("marital_status")));
 		entity.setWebsite(resultSet.getString("website"));
                 entity.setEmail(resultSet.getString("email"));
+                entity.setCompany(resultSet.getString("company"));
 		entity.setCountry(resultSet.getString("country"));
 		entity.setCity(resultSet.getString("city"));
 		entity.setStreet(resultSet.getString("street"));

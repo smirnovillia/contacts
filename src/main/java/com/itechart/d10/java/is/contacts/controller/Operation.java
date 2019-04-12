@@ -12,7 +12,7 @@ package com.itechart.d10.java.is.contacts.controller;
 public enum Operation {
     
     SAVE_CONTACT,
-    UPDATE_CONTACT,
+    FORM_CONTACT,
     DELETE_CONTACT,
     LIST_CONTACT;
     
