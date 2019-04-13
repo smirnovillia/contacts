@@ -18,15 +18,12 @@ import javax.mail.Address;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 
 public class ContactServiceImpl implements IContactService {
 
@@ -78,7 +75,7 @@ public class ContactServiceImpl implements IContactService {
         return dao.find(filter);
     }
 
-    public void sendEmail(String[] recipient, String subject,String content) {
+    public void sendEmail(String recipient, String subject,String content) {
         try {
             String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
             Properties prop = new Properties();
@@ -101,12 +98,13 @@ public class ContactServiceImpl implements IContactService {
             } catch (AddressException ex) {
             } catch (MessagingException ex) {
             }
+            String[] receiver = recipient.split(",");
             try {
-                Address[] to = new Address[recipient.length];
+                Address[] to = new Address[receiver.length];
                 for (int i = 0; i < to.length; i++) {
-                    to[i] = new InternetAddress(recipient[i]);
+                    to[i] = new InternetAddress(receiver[i]);
                 }
-                message.addRecipients(Message.RecipientType.TO, to);
+                message.setRecipients(Message.RecipientType.TO, to);
             } catch (AddressException ex) {
             } catch (MessagingException ex) {
             }
