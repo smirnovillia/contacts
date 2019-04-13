@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.itechart.d10.java.is.contacts.dao.api.IPhoneDao;
+import com.itechart.d10.java.is.contacts.dao.api.entity.IContact;
 import com.itechart.d10.java.is.contacts.dao.api.entity.IPhone;
 import com.itechart.d10.java.is.contacts.dao.api.filter.PhoneFilter;
 import com.itechart.d10.java.is.contacts.dao.impl.PhoneDaoImpl;
@@ -33,6 +34,18 @@ public class PhoneServiceImpl implements IPhoneService {
 		entity.setUpdated(modifedOn);
 		if (entity.getId() == null) {
 			entity.setCreated(modifedOn);
+			dao.insert(entity);
+		} else {
+			dao.update(entity);
+		}
+	}
+        
+	public void save(IContact contact, IPhone entity) {
+		final Date modifedOn = new Date();
+		entity.setUpdated(modifedOn);
+		if (entity.getId() == null) {
+			entity.setCreated(modifedOn);
+                        entity.setContact(contact);
 			dao.insert(entity);
 		} else {
 			dao.update(entity);

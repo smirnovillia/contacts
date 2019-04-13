@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.itechart.d10.java.is.contacts.dao.api.IAttachmentDao;
 import com.itechart.d10.java.is.contacts.dao.api.entity.IAttachment;
+import com.itechart.d10.java.is.contacts.dao.api.entity.IContact;
 import com.itechart.d10.java.is.contacts.dao.api.filter.AttachmentFilter;
 import com.itechart.d10.java.is.contacts.dao.impl.AttachmentDaoImpl;
 import com.itechart.d10.java.is.contacts.service.IAttachmentService;
@@ -33,6 +34,18 @@ public class AttachmentServiceImpl implements IAttachmentService{
 		entity.setUpdated(modifedOn);
 		if(entity.getId() == null) {
 			entity.setCreated(modifedOn);
+			dao.insert(entity);
+		} else {
+			dao.update(entity);
+		}
+	}
+        
+        public void save(IContact contact, IAttachment entity) {
+		final Date modifedOn = new Date();
+		entity.setUpdated(modifedOn);
+		if(entity.getId() == null) {
+			entity.setCreated(modifedOn);
+                        entity.setContact(contact);
 			dao.insert(entity);
 		} else {
 			dao.update(entity);

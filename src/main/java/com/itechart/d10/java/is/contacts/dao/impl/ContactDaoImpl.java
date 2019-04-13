@@ -142,8 +142,6 @@ public class ContactDaoImpl extends AbsractDaoImpl<IContact, Integer> implements
         appendPaging(filter, sqlTile);
         return executeFindQuery(sqlTile.toString());
 	}
-	
-	
-
+        
 
 }

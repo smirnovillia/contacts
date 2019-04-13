@@ -1,12 +1,18 @@
 package com.itechart.d10.java.is.contacts.service.impl;
 
+import com.itechart.d10.java.is.contacts.dao.api.IAttachmentDao;
 import java.util.Date;
 import java.util.List;
 
 import com.itechart.d10.java.is.contacts.dao.api.IContactDao;
+import com.itechart.d10.java.is.contacts.dao.api.IPhoneDao;
+import com.itechart.d10.java.is.contacts.dao.api.entity.IAttachment;
 import com.itechart.d10.java.is.contacts.dao.api.entity.IContact;
+import com.itechart.d10.java.is.contacts.dao.api.entity.IPhone;
 import com.itechart.d10.java.is.contacts.dao.api.filter.ContactFilter;
+import com.itechart.d10.java.is.contacts.dao.impl.AttachmentDaoImpl;
 import com.itechart.d10.java.is.contacts.dao.impl.ContactDaoImpl;
+import com.itechart.d10.java.is.contacts.dao.impl.PhoneDaoImpl;
 import com.itechart.d10.java.is.contacts.service.IContactService;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -28,9 +34,13 @@ import javax.mail.internet.MimeMessage;
 public class ContactServiceImpl implements IContactService {
 
     private IContactDao dao;
+    private AttachmentServiceImpl attachmentServiceImpl;
+    private PhoneServiceImpl phoneServiceImpl;
 
     public ContactServiceImpl() {
         dao = new ContactDaoImpl();
+        phoneServiceImpl = new PhoneServiceImpl();
+        attachmentServiceImpl = new AttachmentServiceImpl();
     }
 
     @Override
@@ -75,7 +85,7 @@ public class ContactServiceImpl implements IContactService {
         return dao.find(filter);
     }
 
-    public void sendEmail(String recipient, String subject,String content) {
+    public void sendEmail(String recipient, String subject, String content) {
         try {
             String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
             Properties prop = new Properties();
@@ -109,15 +119,42 @@ public class ContactServiceImpl implements IContactService {
             } catch (MessagingException ex) {
             }
             message.setSubject(subject);
-            
+
             message.setText(content);
-            
+
             Transport.send(message);
-            
+
         } catch (MessagingException ex) {
             Logger.getLogger(ContactServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    public void save(IContact entity, List<IPhone> phones, List<IAttachment> attachments) {
+        final Date modifedOn = new Date();
+        entity.setUpdated(modifedOn);
+        if (entity.getId() == null) {
+            entity.setCreated(modifedOn);
+            dao.insert(entity);
+        } else {
+            dao.update(entity);
+            
+        }
+        saveModels(entity, phones, attachments);
+    }
+
+    private void saveModels(IContact contact, List<IPhone> phones, List<IAttachment> attachments) {
+
+        if (phones != null) {
+            for (IPhone phone : phones) {
+                phoneServiceImpl.save(contact, phone);
+            }
+        }
+        if (attachments != null) {
+            for (IAttachment attachment : attachments) {
+                attachmentServiceImpl.save(contact, attachment);
+            }
+        }
     }
 
 }
