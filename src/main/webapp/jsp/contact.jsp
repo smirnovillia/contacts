@@ -93,16 +93,38 @@
                 </div>
             </form>
             <div> 
-                <table id="phoneTable">
+                
+                <a onclick="addPhone()"/>
+                
+                <table>
                     <thead>
-                        
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <label>Phone number</label>
+                            </td>
+                            <td>
+                                <label>Phone type</label>
+                            </td>
+                            <td>
+                                <label>Comment</label>
+                            </td>
+                            
+                        </tr>
 
                     </thead>
-                    <tbody>
-
+                    <tbody id="phoneTable">
+                        <tr>
+                            <td><input type ="checkbox" name="labeledPhone" value="${phone.id}"></td>
+                            <td><input type="text" name="phoneNumber" value="${phone.countryCode}${phone.operatorCode}${phone.phoneNumber}"></td>
+                            <td><input type="text" name="phoneType" value="${phone.phoneType}"></td>
+                            <td><input type="text" name="comment" value="${phone.comment}"></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
+
             <div>
                 <table id="attachmentTable">
                     <thead>
@@ -115,10 +137,10 @@
                 </table>
             </div>
 
-            <p>
-                <a href="${pageContext.request.contextPath}/controller?operation=LIST_CONTACT">Back to List</a>
-            </p>
-        </div>
+        <p>
+            <a href="${pageContext.request.contextPath}/controller?operation=LIST_CONTACT">Back to List</a>
+        </p>
+    </div>
 
-    </body>
+</body>
 </html>

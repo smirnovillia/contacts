@@ -1,14 +1,9 @@
-function selectedItems() {
-    var selchbox = [];
-    var inpfields = document.getElementsByName('labeled');
-    for (var i = 0; i < inpfields.length; i++) {
-        if (inpfields[i].type == 'checkbox' && inpfields[i].checked == true)
-            selchbox.push(inpfields[i].value);
+function addPhone() {
+    var phoneWindow = window.open("phone.jsp", "phoneForm", "height=200, width=150")
+    if(window.focus){
+        phoneWindow.focus()
     }
-    return selchbox;
-}
-
-function deleteContact(){
     
 }
+
 
