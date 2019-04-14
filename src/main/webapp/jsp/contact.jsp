@@ -100,34 +100,27 @@
 
             <div> 
 
-                <table id="phoneTable">
+                <table class="table">
                     <thead>
                         <tr>
-                            <td>
-                            </td>
-                            <td>
-                                <label>Phone number</label>
-                            </td>
-                            <td>
-                                <label>Phone type</label>
-                            </td>
-                            <td>
-                                <label>Comment</label>
-                            </td>
+                            <td></td>
+                            <td>Phone number</td>
+                            <td>Phone type</td>
+                            <td>Comment</td>
 
                         </tr>
 
                     </thead>
                     <tbody id="phoneTable">
-                        <c:forEach items="${phones}" var="phone" varStatus="num">
+                        <c:forEach items="${phones}" var="phone">
                             <tr>
-                                <td><input type ="checkbox" name="phones"></td>
-                                <td><input type="text" form="form" value="${phone.getFullPhone()}"></td>
-                                <td><input type="text" form="form" name="phoneType${num.count-1}" value="${phone.phoneType}"></td>
-                                <td><input type="text" form="form" name="comment${num.count-1}" value="${phone.comment}"></td>
-                                <td><input type="hidden" form="form" name="countryCode${num.count-1}" value="${phone.countryCode}"></td>
-                                <td><input type="hidden" form="form" name="operatorCode${num.count-1}" value="${phone.operatorCode}"></td>
-                                <td><input type="hidden" form="form" name="phoneNumber${num.count-1}" value="${phone.phoneNumber}"></td>
+                                <td><input type="checkbox" name="phones"></td>
+                                <td><input type="text" form="form" value="${phone.getFullPhone()}" readonly></td>
+                                <td><input type="text" form="form" name="phoneType" value="${phone.phoneType}" readonly></td>
+                                <td><input type="text" form="form" name="comment" value="${phone.comment}" readonly></td>
+                                <td><input type="hidden" form="form" name="countryCode" value="${phone.countryCode}" readonly></td>
+                                <td><input type="hidden" form="form" name="operatorCode" value="${phone.operatorCode}" readonly></td>
+                                <td><input type="hidden" form="form" name="phoneNumber" value="${phone.phoneNumber}" readonly></td>
                             </tr>
                         </c:forEach>
                     </tbody>

@@ -35,22 +35,22 @@ var phoneService = {
             cell7 = row.cells[6];
         }
 
-        cell1.innerHTML = "<input type='checkbox'  name='phones'/>";
+        cell1.innerHTML = '<input type="checkbox" name="phones"/>';
 
         var fullPhone = form.countryCode.value + " " + form.operatorCode.value + " " + form.phoneNumber.value;
 
-        cell2.innerHTML = "<input type='text' form='form' value='" + fullPhone + "' readonly/>";
-        cell3.innerHTML = "<input type='text' form='form' name='phoneType" + i + "' value='" + form.phoneType.value + "' readonly/>";
-        cell4.innerHTML = "<input type='text' form='form' name='comment" + i + "' value='" + form.comment.value + "' readonly/>";
-        cell5.innerHTML = "<input type='hidden' form='form' name='countryCode" + i + "' value='" + form.countryCode.value + "' />";
-        cell6.innerHTML = "<input type='hidden' form='form' name='operatorCode" + i + "' value='" + form.operatorCode.value + "' />";
-        cell7.innerHTML = "<input type='hidden' form='form' name='phoneNumber" + i + "' value='" + form.phoneNumber.value + "' />";
+        cell2.innerHTML = '<input type="text" form="form" value="' + fullPhone + '" readonly/>';
+        cell3.innerHTML = '<input type="text" form="form" name="phoneType" value="' + form.phoneType.value + '" readonly/>';
+        cell4.innerHTML = '<input type="text" form="form" name="comment" value="' + form.comment.value + '" readonly/>';
+        cell5.innerHTML = '<input type="hidden" form="form" name="countryCode" value="' + form.countryCode.value + '"/>';
+        cell6.innerHTML = '<input type="hidden" form="form" name="operatorCode" value="' + form.operatorCode.value + '"/>';
+        cell7.innerHTML = '<input type="hidden" form="form" name="phoneNumber" value="' + form.phoneNumber.value + '"/>';
         window.close();
     },
 
     deletePhone: function () {
         var table = document.getElementById("phoneTable");
-        var checkboxes = document.getElementsByName('phones'), length = checkboxes.length;
+        var checkboxes = document.getElementsByName("phones"), length = checkboxes.length;
 
         for (var i = length - 1; i >= 0; i--) {
             if (checkboxes[i].type == "checkbox" && checkboxes[i].checked) {
@@ -63,20 +63,20 @@ var phoneService = {
 
         var form = document.getElementById("phoneForm");
         var table = document.getElementById("phoneTable");
-        var checkboxes = document.getElementsByName('phones');
+        var checkboxes = document.getElementsByName("phones");
         if (countChecked(checkboxes) == 1) {
-            window.open('jsp/phone.jsp', 'phonePage', 'width=1000, height=1000');
+            openPopUp();
             for (var i = 0; i < checkboxes.length; i++) {
                 if (checkboxes[i].type == "checkbox" && checkboxes[i].checked) {
                     var row = table.rows[i];
-                    form.phoneType.value = row.cells[3].childNodes[0].value;
-                    form.comment.value = row.cells[4].childNodes[0].value;
-                    form.countryCode.value = row.cells[5].childNodes[0].value;
-                    form.operatorCode.value = row.cells[6].childNodes[0].value;
-                    form.phoneNumber.value = row.cells[7].childNodes[0].value;
+                    form.phoneType.value = row.getElementByName("phoneType").innerText;
+                    form.comment.value = row.getElementByName("comment").innerText;
+                    form.countryCode.value = row.getElementByName("countryCode").innerText;
+                    form.operatorCode.value = row.getElementByName("operatorCode").innerText;
+                    form.phoneNumber.value = row.getElementByName("phoneNumber").innerText;
                     this.pos = i;
                     this.mode = 1;
-                    
+
                 }
             }
         } else if (countChecked(checkboxes) == 0) {
@@ -89,7 +89,7 @@ var phoneService = {
     },
 
     addPhone: function () {
-        window.open('jsp/phone.jsp', 'phonePage', 'width=1000, height=1000');
+        openPopUp();
         this.mode = 0;
     },
 
@@ -106,6 +106,17 @@ function countChecked(checkboxes) {
         }
     }
     return count;
+}
+
+function openPopUp() {
+    let height = 600;
+    let width = 600;
+    let left = (screen.width/2) - (width/2);
+    let top = (screen.height/2) - (height/2);
+    let param = "height="+height +",width="+width+",left="+left+",top="+top+","+"resizable=yes,scrollbars=yes,toolbar=yes,status=yes";
+    let newWindow = window.open("jsp/phone.jsp", "phonePage", param);
+    newWindow.focus();
+
 }
 
 
