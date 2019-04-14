@@ -7,7 +7,7 @@
     <head>
         <title>Contact App</title>
 
-        <link type="text/css" rel="stylesheet" href="css/style.css">
+        <link type="text/css" rel="stylesheet" href="css/list.css">
     </head>
 
     <body>

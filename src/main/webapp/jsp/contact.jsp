@@ -1,17 +1,20 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <title>Add Contact Form</title>
-        <link type="text/css" rel="stylesheet" href="css/save-style.css">
+        <link type="text/css" rel="stylesheet" href="/css/contact.css">
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/phone.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/attachment.js"></script>
     </head>
     <body>
 
         <div id="container">
             <h3>Add Contact</h3>
 
-            <form action="${pageContext.request.contextPath}/controller" method="POST">
+            <form id="form" action="${pageContext.request.contextPath}/controller" method="POST">
 
                 <input type="hidden" name="operation" value="SAVE_CONTACT" />
 
@@ -87,16 +90,17 @@
                     <label>Zip:</label>
                     <input type="text" name="zip" value="${contact.zip}"/>
                 </div>
-                <div>
-                    <label></label>
-                    <input type="submit" value="Save" class="save" />
-                </div>
             </form>
+
+            <div style="float: right;">
+                <button onclick="phoneService.addPhone()" >Add</button>
+                <button onclick="phoneService.deletePhone()" >Delete</button>
+                <button onclick="phoneService.editPhone()" >Edit</button>
+            </div>
+
             <div> 
-                
-                <a onclick="addPhone()"/>
-                
-                <table>
+
+                <table id="phoneTable">
                     <thead>
                         <tr>
                             <td>
@@ -110,37 +114,37 @@
                             <td>
                                 <label>Comment</label>
                             </td>
-                            
+
                         </tr>
 
                     </thead>
                     <tbody id="phoneTable">
-                        <tr>
-                            <td><input type ="checkbox" name="labeledPhone" value="${phone.id}"></td>
-                            <td><input type="text" name="phoneNumber" value="${phone.countryCode}${phone.operatorCode}${phone.phoneNumber}"></td>
-                            <td><input type="text" name="phoneType" value="${phone.phoneType}"></td>
-                            <td><input type="text" name="comment" value="${phone.comment}"></td>
-                        </tr>
+                        <c:forEach items="${phones}" var="phone" varStatus="num">
+                            <tr>
+                                <td><input type ="checkbox" name="phones"></td>
+                                <td><input type="text" form="form" value="${phone.getFullPhone()}"></td>
+                                <td><input type="text" form="form" name="phoneType${num.count-1}" value="${phone.phoneType}"></td>
+                                <td><input type="text" form="form" name="comment${num.count-1}" value="${phone.comment}"></td>
+                                <td><input type="hidden" form="form" name="countryCode${num.count-1}" value="${phone.countryCode}"></td>
+                                <td><input type="hidden" form="form" name="operatorCode${num.count-1}" value="${phone.operatorCode}"></td>
+                                <td><input type="hidden" form="form" name="phoneNumber${num.count-1}" value="${phone.phoneNumber}"></td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>
+        </div>
 
-            <div>
-                <table id="attachmentTable">
-                    <thead>
 
-                    </thead>
-                    <tbody>
 
-                    </tbody>
 
-                </table>
-            </div>
-
-        <p>
-            <a href="${pageContext.request.contextPath}/controller?operation=LIST_CONTACT">Back to List</a>
-        </p>
+        <div>
+            <button form="form" type="submit"/>Save</button>
     </div>
+
+    <p>
+        <a href="${pageContext.request.contextPath}/controller?operation=LIST_CONTACT">Back to List</a>
+    </p>
 
 </body>
 </html>
