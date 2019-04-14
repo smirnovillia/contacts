@@ -10,7 +10,7 @@
            <div id="phonePopUp">
             <div id="tt">
                 <div class="container">
-                    <form id="phoneForm">
+                    <form id="phoneForm" method="POST">
 
                         <div>
                             <label  for="countryCode">Country code:</label>
@@ -31,7 +31,7 @@
                         <div>
                             <label for="phoneNumber">Phone number:</label>
                             <div>
-                                <input type="text" id="phone" name="phoneNumber" placeholder="Phone number" required>
+                                <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone number" required>
                             </div>
                         </div>
 

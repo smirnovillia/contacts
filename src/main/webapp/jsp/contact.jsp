@@ -5,7 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Add Contact Form</title>
-        <link type="text/css" rel="stylesheet" href="/css/contact.css">
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/contact.css">
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/phone.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/attachment.js"></script>
     </head>
@@ -115,7 +115,7 @@
                         <c:forEach items="${phones}" var="phone">
                             <tr>
                                 <td><input type="checkbox" name="phones"></td>
-                                <td><input type="text" form="form" value="${phone.getFullPhone()}" readonly></td>
+                                <td><input type="text" form="form" name="fullPhone" value="${phone.getFullPhone()}" readonly></td>
                                 <td><input type="text" form="form" name="phoneType" value="${phone.phoneType}" readonly></td>
                                 <td><input type="text" form="form" name="comment" value="${phone.comment}" readonly></td>
                                 <td><input type="hidden" form="form" name="countryCode" value="${phone.countryCode}" readonly></td>
