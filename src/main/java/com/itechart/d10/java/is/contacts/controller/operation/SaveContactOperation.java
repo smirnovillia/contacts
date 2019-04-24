@@ -65,8 +65,12 @@ public class SaveContactOperation implements ICommand {
         entity.setCity(request.getParameter("city"));
         entity.setStreet(request.getParameter("street"));
         entity.setHouseNumber(request.getParameter("houseNumber"));
-        entity.setApartment(Integer.parseInt(request.getParameter("apartment")));
+        if(request.getParameter("apartment") != null && !request.getParameter("apartment").isEmpty()){
+            entity.setApartment(Integer.parseInt(request.getParameter("apartment")));
+        }
         entity.setZip(request.getParameter("zip"));
+        
+        
 
         contactServiceImpl.save(entity);
         return "/controller?operation=LIST_CONTACT";

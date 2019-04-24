@@ -1,18 +1,14 @@
 package com.itechart.d10.java.is.contacts.service.impl;
 
-import com.itechart.d10.java.is.contacts.dao.api.IAttachmentDao;
 import java.util.Date;
 import java.util.List;
 
 import com.itechart.d10.java.is.contacts.dao.api.IContactDao;
-import com.itechart.d10.java.is.contacts.dao.api.IPhoneDao;
 import com.itechart.d10.java.is.contacts.dao.api.entity.IAttachment;
 import com.itechart.d10.java.is.contacts.dao.api.entity.IContact;
 import com.itechart.d10.java.is.contacts.dao.api.entity.IPhone;
 import com.itechart.d10.java.is.contacts.dao.api.filter.ContactFilter;
-import com.itechart.d10.java.is.contacts.dao.impl.AttachmentDaoImpl;
 import com.itechart.d10.java.is.contacts.dao.impl.ContactDaoImpl;
-import com.itechart.d10.java.is.contacts.dao.impl.PhoneDaoImpl;
 import com.itechart.d10.java.is.contacts.service.IContactService;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -108,15 +104,23 @@ public class ContactServiceImpl implements IContactService {
             } catch (AddressException ex) {
             } catch (MessagingException ex) {
             }
-            String[] receiver = recipient.split(",");
-            try {
-                Address[] to = new Address[receiver.length];
-                for (int i = 0; i < to.length; i++) {
-                    to[i] = new InternetAddress(receiver[i]);
+            if (recipient.contains(",")) {
+                String[] receiver = recipient.split(",");
+                try {
+                    Address[] to = new Address[receiver.length];
+                    for (int i = 0; i < to.length; i++) {
+                        to[i] = new InternetAddress(receiver[i]);
+                    }
+                    message.setRecipients(Message.RecipientType.TO, to);
+                } catch (AddressException ex) {
+                } catch (MessagingException ex) {
                 }
-                message.setRecipients(Message.RecipientType.TO, to);
-            } catch (AddressException ex) {
-            } catch (MessagingException ex) {
+            } else {
+                try {
+                    message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+                } catch (AddressException ex) {
+                } catch (MessagingException ex) {
+                }
             }
             message.setSubject(subject);
 
@@ -130,6 +134,19 @@ public class ContactServiceImpl implements IContactService {
 
     }
 
+    public void save(IContact entity, List<IPhone> phones) {
+        final Date modifedOn = new Date();
+        entity.setUpdated(modifedOn);
+        if (entity.getId() == null) {
+            entity.setCreated(modifedOn);
+            dao.insert(entity);
+        } else {
+            dao.update(entity);
+
+        }
+        saveModels(entity, phones);
+    }
+
     public void save(IContact entity, List<IPhone> phones, List<IAttachment> attachments) {
         final Date modifedOn = new Date();
         entity.setUpdated(modifedOn);
@@ -138,9 +155,18 @@ public class ContactServiceImpl implements IContactService {
             dao.insert(entity);
         } else {
             dao.update(entity);
-            
+
         }
         saveModels(entity, phones, attachments);
+    }
+    
+    private void saveModels(IContact contact, List<IPhone> phones) {
+
+        if (phones != null) {
+            for (IPhone phone : phones) {
+                phoneServiceImpl.save(contact, phone);
+            }
+        }
     }
 
     private void saveModels(IContact contact, List<IPhone> phones, List<IAttachment> attachments) {

@@ -11,10 +11,6 @@ import com.itechart.d10.java.is.contacts.service.impl.ContactServiceImpl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author illiasmirnov
- */
 public class FormContactOperation implements ICommand {
 
     private ContactServiceImpl contactServiceImpl = new ContactServiceImpl();

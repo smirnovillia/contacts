@@ -1,0 +1,142 @@
+input,
+select,
+textarea,
+body * {
+    font: 14px Verdana, Geneva, sans-serif;
+}
+
+body {
+    background: linear-gradient(#e66465, #9198e5);
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    margin: 0;
+}
+
+h2 {
+    font-size: 1.25rem;
+    text-align: center;
+    margin: 0;
+    font-weight: normal;
+}
+
+.container {
+    position: relative;
+    max-width: 60%;
+    margin: 5rem auto;
+    background: #fff;
+    width: auto;
+    padding: 1rem 5rem 0;
+    border-radius: 1px;
+}
+
+
+.button-container {
+    text-align: center;
+    left: 5rem;
+}
+
+.form-group {
+    position: relative;
+    margin-top: 1.75rem;
+    margin-bottom: 1.75rem;
+}
+
+.form-inline > .form-group,
+.form-inline > .input {
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+
+.form-group .form-help {
+    position: absolute;
+    width: 100%;
+}
+
+
+.form-group input {
+    height: 1.5rem;
+}
+
+.form-group textarea {
+    resize: none;
+}
+
+.form-group select {
+    width: 100%;
+    font-size: 0.9rem;
+    height: 2rem;
+    background: none;
+    border: 0.1;
+    border-color: #b3b3b3a6;
+    line-height: 1.6;
+    box-shadow: none;
+}
+
+.form-group .control-label{
+    position: absolute;
+    top: 0.5rem;
+    pointer-events: none;
+    padding-left: 0.125rem;
+    color: #0f1b25;
+    font-size: 0.9rem;
+    font-weight: normal;
+}
+
+
+.form-group input,
+.form-group textarea {
+    display: block;
+    background: none;
+    padding: 0.125rem 0.125rem;
+    font-size: 0.9rem;
+    border-width: 0.1;
+    border-color: #b3b3b3a6;
+    width: 80%;
+    margin-left: auto;
+    color: #000000f0;
+
+}
+
+
+.button {
+    position: relative;
+    background: currentColor;
+    border: 1px solid currentColor;
+    font-size: 0.5rem;
+    left: 10rem;
+    color: #4f93ce;
+    margin: 1rem 0;
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+    transition: background-color 0.28s ease, color 0.28s ease, box-shadow 0.28s ease;
+    overflow: hidden;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.button span {
+    color: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+
+.button:hover,.file-upload:hover {
+    color: #337ab7;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+}
+
+.button:focus {
+    outline: none;
+}
+
+a.button {
+    appearance: button;
+    text-decoration: none;
+    color: #4f93ce;
+    background: currentColor;
+    padding: 0.7rem 1.75rem;
+    bottom: 0.175rem;
+}
+
+

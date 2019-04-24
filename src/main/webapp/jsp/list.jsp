@@ -1,56 +1,58 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
-<!DOCTYPE html>
-<html>
 
-    <head>
-        <title>Contact App</title>
 
-        <link type="text/css" rel="stylesheet" href="css/list.css">
-    </head>
+<link type="text/css" rel="stylesheet" href="css/list.css">
 
-    <body>
-        <a onclick="window.location.href = '${pageContext.request.contextPath}/controller?operation=FORM_CONTACT'"
-           /> Add contact </a>
+<input type="hidden" name="operation" value="LIST_CONTACT" />
 
-    <input type="hidden" name="operation" value="LIST_CONTACT" />
+<form action="${pageContext.request.contextPath}/controller" method="GET">
 
-    <form action="${pageContext.request.contextPath}/controller" method="GET">
+    <div class="button-container">
+        <button type="button" class="button" onclick="window.location.href = '${pageContext.request.contextPath}/controller?operation=FORM_CONTACT'"><span>Add</span> </button>
 
-        <input type="submit" name="operation" value="DELETE_CONTACT" onclick="form.action = '${pageContext.request.contextPath}/controller';">
-        
-        <input type="submit" name="operation" value="FORM_EMAIL" onclick="form.action = '${pageContext.request.contextPath}/controller';">
+        <button class="button" type="submit" name="operation" value="DELETE_CONTACT" onclick="form.action = '${pageContext.request.contextPath}/controller';"><span>Delete</span></button>
 
-        <table border="1">
+        <button class="button" type="submit" name="operation" value="FORM_EMAIL" onclick="form.action = '${pageContext.request.contextPath}/controller';"><span>Email</span></button>
 
-            <tr>
-                <th></th>
-                <th>Full name</th>
-                <th>Birthday</th>
-                <th>Address</th>
-                <th>Company</th>
+    </div>
+
+    <table class="list">
+
+        <thead>
+            <tr class="contact-row">
+                <td></th>
+                <td>Full name</th>
+                <td>Birthday</th>
+                <td>Address</th>
+                <td>Company</th>
             </tr>
-            <tbody>
-                <c:forEach items="${contactList}" var="contact" >
+        </thead>
+        <tbody>
+            <c:forEach items="${contactList}" var="contact" >
 
-                    <tr>
-                        <td><input type="checkbox" name="labeled" value="${contact.id}"></td>
-                            <c:url var="contactLink" value="/controller">
-                                <c:param name="operation" value="FORM_CONTACT"/>
-                                <c:param name="contactId" value="${contact.id}"/>
-                            </c:url>
-                        <td><a href="${contactLink}">${contact.firstName} ${contact.midleName} ${contact.lastName}</td>
-                        <td>${contact.birthday}</td> 
-                        <td>${contact.zip}, ${contact.country}, ${contact.city}, ${contact.street}, ${contact.houseNumber}, ${contact.apartment}</td> 
-                        <td>${contact.company}</td> 
-                    </tr>
-                </c:forEach>
+                <tr class="contact-row">
+                    <td><input type="checkbox" name="labeled" value="${contact.id}"></td>
+                        <c:url var="contactLink" value="/controller">
+                            <c:param name="operation" value="FORM_CONTACT"/>
+                            <c:param name="contactId" value="${contact.id}"/>
+                        </c:url>
+                    <td><a href="${contactLink}">${contact.firstName} ${contact.midleName} ${contact.lastName}</td>
+                    <td>${contact.birthday}</td> 
+                    <td>   <c:choose>
+                            <c:when test="${contact.apartment eq '0'}">
+                                Postcode:${contact.zip}, Country:${contact.country}, City:${contact.city}, Street:${contact.street}, House:${contact.houseNumber}
+                            </c:when>    
+                            <c:otherwise>
+                                Postcode:${contact.zip}, Country:${contact.country}, City:${contact.city}, Street:${contact.street}, House:${contact.houseNumber}, Apartment:${contact.apartment}
+                            </c:otherwise>
+                        </c:choose>
+                    </td> 
+                    <td>${contact.company}</td> 
+                </tr>
+            </c:forEach>
 
-            </tbody>
-        </table>
-    </form>
-</body>
-
-
-</html>
+        </tbody>
+    </table>
+</form>

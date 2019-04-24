@@ -1,55 +1,37 @@
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Send Email</title>
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/email.css">
 
 
-        <h3>Email</h3>
 
-        <form action="${pageContext.request.contextPath}/controller" method="GET">
-            <input type="hidden" name="operation" value="SEND_EMAIL" />
+<div class="container">
 
-            <table>
-                <tbody>
-                    <tr>
-                        <td><label>Send to:</label></td>
-                        <td><input type="text" name="recipient" value="${recipient}"/></td>
-                    </tr>
+    <h2>Email</h2>
 
-                    <tr>
-                        <td><label>Subject:</label></td>
-                        <td><input type="text" name="subject" /></td>
-                    </tr>
+    <form action="${pageContext.request.contextPath}/controller" method="GET">
+        <input type="hidden" name="operation" value="SEND_EMAIL" />
+        <div class="form-group">
+            <label class="control-label" for="recipient">Send to</label>
+            <input type="text" name="recipient" id="recipient" value="${recipient}">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="subject">Subject</label>
+            <input type="text" id="subject" name="subject">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="message">Text</label>
+            <textarea  rows="5" name="message" id="message"
+                       maxlength="60"></textarea>
+        </div>
+        <div>
+            <a class="button" href="${pageContext.request.contextPath}/controller?operation=LIST_CONTACT"><span>Back</span></a>
+            <button class="button" type="reset"><span>Clear</span></button>
+            <button class="button" type="submit"><span>Send</span></button>
+        </div>
+    </form>
 
-                    <tr>
-                        <td><label>Text:</label></td>
-                        <td><input type="text" name="message"/></td>
-                    </tr>
 
-                    <tr>
-                        <td><label></label></td>
-                        <td><input type="submit" value="Send"/></td>
-                    </tr>
 
-                    <tr>
-                        <td><label></label></td>
-                        <td><input type="reset" value="Cancel" /></td>
-                    </tr>
-
-                </tbody>
-            </table>
-        </form>
-
-        <p>
-            <a href="${pageContext.request.contextPath}/controller?operation=LIST_CONTACT">Back to List</a>
-        </p>
-
-    </div>
-</body>
-</html>
+</div>
+</div>

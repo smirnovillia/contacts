@@ -1,34 +1,197 @@
-* {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+input,
+select,
+body * {
+    font: 14px Verdana, Geneva, sans-serif;
 }
-#emailPopUp {
-    top:0;
-    left:0;
-    position:fixed;
-    background-color:rgba(0,0,0,0.74);
-    width:100%;
-    height:100%;
-    z-index:10000;
+
+body {
+    background: linear-gradient(#e66465, #9198e5);
+    background-size: auto 100%;
+    margin: 0;
 }
-.tt {
-    position:relative;
-    background-color:#fff;
-    width:800px;
-    padding:12px;
-    opacity: 1;
-    height:500px;
-    margin:10% auto auto auto;
-    border:black solid 1px;
+
+input[type='text'],
+.list tbody tr:hover input[type='text'] {
+    line-height: 25px;
+    height: 25px;
+    color: #000000f0;
+    padding: 0 5px;
+    background-color: #fff;
+    border: 1px solid #CCC;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border linear .2s, box-shadow linear .2s;
+    -moz-transition: border linear .2s, box-shadow linear .2s;
+    -o-transition: border linear .2s, box-shadow linear .2s;
+    transition: border linear .2s, box-shadow linear .2s;
+    outline: none
 }
-div.close {
+
+input[type='text']:focus,
+.list tbody tr:hover input:focus {
+    border-color: rgba(82, 168, 236, .8);
+    outline: 0;
+    outline: thin dotted 9;
+}
+
+label {
+    cursor: pointer
+}
+
+.button-container {
+    margin: 0 2rem;
+}
+
+.button {
+    position: relative;
+    background: currentColor;
+    border: 1px solid currentColor;
+    font-size: 0.85rem;
+    color: #4f93ce;
+    margin: 1rem 0;
+    padding: 0.2rem 2rem;
     cursor: pointer;
-    position: absolute;
-    font-weight: 700;
-    text-shadow: #000 1px 1px 0;
-    color: black;
-    right: 7px;
-    top: 2px;
+    transition: background-color 0.28s ease, color 0.28s ease, box-shadow 0.28s ease;
+    overflow: hidden;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
+
+.button span {
+    color: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+.button:hover{
+    color: #337ab7;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+}
+
+.button:focus {
+    outline: none;
+}
+
+a.button {
+    appearance: button;
+    text-decoration: none;
+    color: #4f93ce;
+    background: currentColor;
+}
+
+.list {
+    border-collapse: collapse;
+    width: 96%;
+    margin: 1rem auto;
+}
+
+.list td {
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee
+}
+
+.list thead td a,
+.list thead td {
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 900;
+    color: #24A0DA;
+    text-transform: uppercase;
+    height: 40px;
+    padding: 0 10px!important;
+}
+
+.list thead td i, form i{
+    filter: invert(100%);
+    color: black;
+}
+
+.list tbody td a {
+    text-decoration: underline;
+    outline: 0
+}
+
+.list tbody td,
+.list tfoot td,
+.list thead td{
+    vertical-align: middle;
+    padding: 0 10px!important;
+    background: #fff;
+    height: 40px
+}
+
+.list .left {
+    text-align: left;
+    padding: 10px
+}
+
+.list .right {
+    text-align: right;
+    padding: 10px
+}
+
+.list .center {
+    text-align: center;
+    padding: 10px
+}
+
+
+.list tr.filter td {
+    padding: 5px 10px;
+    background: whiteSmoke
+}
+
+.list tbody tr:hover td {
+    background-color: rgba(28, 183, 236, .1)
+}
+
+table.form {
+    width: 100%;
+    border-collapse: collapse
+}
+
+table.form>tbody>tr>td:first-child {
+    width: 220px
+}
+
+table.form>tbody>tr>td {
+    padding: 10px;
+    color: #000;
+    border-bottom: 1px solid #F0F0F0
+}
+
+select.filter {
+    width: 100%
+}
+
+input.filter {
+    width: 80%
+}
+
+tr.contact-row>td input {
+    width: 80%!important
+}
+
+tr ul {
+    margin: 0;
+    padding: 0
+}
+
+.list tbody a.included,
+.list tbody a.excluded {
+    width: 20px;
+    height: 20px;
+    display: block;
+    border-radius: 10px;
+    margin-left: 15px
+}
+
+.list tbody a.included {
+    background: #5BB75B
+}
+
+.list tbody a.excluded {
+    background: #C9C9C9
+}
+
 

@@ -3,17 +3,18 @@ package com.itechart.d10.java.is.contacts.controller;
 import java.io.IOException;
 import java.util.Map;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itechart.d10.java.is.contacts.controller.api.ICommand;
-import com.itechart.d10.java.is.contacts.controller.operation.SaveContactOperation;
 import com.itechart.d10.java.is.contacts.controller.operation.DeleteContactOperation;
 import com.itechart.d10.java.is.contacts.controller.operation.EmailFormOperation;
 import com.itechart.d10.java.is.contacts.controller.operation.FormContactOperation;
 import com.itechart.d10.java.is.contacts.controller.operation.ListContactOperation;
+import com.itechart.d10.java.is.contacts.controller.operation.SaveFullContactOperation;
 import com.itechart.d10.java.is.contacts.controller.operation.SendEmailOperation;
 import java.util.EnumMap;
 import javax.servlet.RequestDispatcher;
@@ -27,7 +28,7 @@ public class CommonServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         comands = new EnumMap<Operation, ICommand>(Operation.class);
-        comands.put(Operation.SAVE_CONTACT, SaveContactOperation.getInstance());
+        comands.put(Operation.SAVE_CONTACT, SaveFullContactOperation.getInstance());
         comands.put(Operation.LIST_CONTACT, ListContactOperation.getInstance());
         comands.put(Operation.FORM_CONTACT, FormContactOperation.getInstance());
         comands.put(Operation.DELETE_CONTACT, DeleteContactOperation.getInstance());
@@ -44,7 +45,7 @@ public class CommonServlet extends HttpServlet {
                 dispatcher.forward(request, response);
             }
         } catch (Exception e) {
-            response.sendRedirect(request.getContextPath() + "/jsp/error.jsp");
+            response.sendRedirect(request.getContextPath() + "/jsp/error/error-page.jsp");
         }
 
     }

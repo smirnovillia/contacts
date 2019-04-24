@@ -16,6 +16,7 @@ public enum Operation {
     DELETE_CONTACT,
     LIST_CONTACT,
     FORM_EMAIL,
+    FILE_UPLOAD,
     SEND_EMAIL;
     
     

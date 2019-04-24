@@ -44,7 +44,11 @@ public class ContactDaoImpl extends AbsractDaoImpl<IContact, Integer> implements
 				pStmt.setString(12, entity.getCity());
 				pStmt.setString(13, entity.getStreet());
 				pStmt.setString(14, entity.getHouseNumber());
-				pStmt.setInt(15, entity.getApartment());
+				 if(entity.getApartment() == null) {
+                                    pStmt.setInt(15, java.sql.Types.NULL);
+                                } else{
+                                    pStmt.setInt(15, entity.getApartment());
+                                }
 				pStmt.setString(16, entity.getZip());
 				pStmt.setObject(17, entity.getUpdated(), Types.TIMESTAMP);
 				pStmt.setInt(18, entity.getId());
@@ -80,7 +84,11 @@ public class ContactDaoImpl extends AbsractDaoImpl<IContact, Integer> implements
 				pStmt.setString(12, entity.getCity());
 				pStmt.setString(13, entity.getStreet());
 				pStmt.setString(14, entity.getHouseNumber());
-				pStmt.setInt(15, entity.getApartment());
+                                if(entity.getApartment() == null) {
+                                    pStmt.setInt(15, java.sql.Types.NULL);
+                                } else{
+                                    pStmt.setInt(15, entity.getApartment());
+                                }
 				pStmt.setString(16, entity.getZip());
 				pStmt.setObject(17, entity.getCreated(), Types.TIMESTAMP);
 				pStmt.setObject(18, entity.getUpdated(), Types.TIMESTAMP);
@@ -121,7 +129,8 @@ public class ContactDaoImpl extends AbsractDaoImpl<IContact, Integer> implements
 		entity.setCity(resultSet.getString("city"));
 		entity.setStreet(resultSet.getString("street"));
 		entity.setHouseNumber(resultSet.getString("house_number"));
-		entity.setApartment(resultSet.getInt("apartment"));
+                Integer apartment = resultSet.getInt("apartment");
+		entity.setApartment(apartment);
 		entity.setZip(resultSet.getString("zip"));
 		
 		entity.setCreated(resultSet.getTimestamp("created"));
